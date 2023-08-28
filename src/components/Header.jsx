@@ -32,6 +32,9 @@ export default function Header() {
         >
           Vans
         </NavLink>
+        <Link to="login" className="login-link">
+          <img src="/assets/images/avatar-icon.png" className="login-icon" />
+        </Link>
       </nav>
     </header>
   );
