@@ -1,18 +1,12 @@
 import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import { useFetchData } from "../hooks/useFetchData";
 
 export default function Vans() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [vans, setVans] = React.useState([]);
 
   const typeFilter = searchParams.get("type");
-
-  React.useEffect(() => {
-    fetch("/api/vans")
-      .then((res) => res.json())
-      .then((data) => setVans(data.vans));
-  }, []);
-
+  const vans = useFetchData("api/vans")
   const displayedVans = typeFilter
     ? vans.filter((van) => van.type === typeFilter)
     : vans;

@@ -1,18 +1,12 @@
 import React from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
+import { useFetchData } from "../hooks/useFetchData";
 
 export default function VanDetail() {
-  const params = useParams();
+  const { id } = useParams();
   const location = useLocation();
-  console.log(location);
 
-  const [van, setVan] = React.useState(null);
-
-  React.useEffect(() => {
-    fetch(`/api/vans/${params.id}`)
-      .then((res) => res.json())
-      .then((data) => setVan(data.vans));
-  }, [params.id]);
+  const van = useFetchData(`/api/vans/${id}`);
 
   const search = location.state?.search || "";
   const type = location.state?.type || "all";
