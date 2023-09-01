@@ -2,25 +2,35 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import "./style/App.css";
-import "./server";
-import Vans from "./pages/Vans";
-import VanDetail from "./pages/VanDetail";
+import Vans from "./pages/Vans/Vans";
+import VanDetail from "./pages/Vans/VanDetail";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Host/Dashboard";
+import Income from "./pages/Host/Income";
+import Reviews from "./pages/Host/Reviews";
+import HostVans from "./pages/host/HostVans";
+import HostVanDetail from "./pages/host/HostVanDetail";
+import HostVanInfo from "./pages/Host/HostVanInfo";
+import HostVanPricing from "./pages/Host/HostVanPricing";
+import HostVanPhotos from "./pages/Host/HostVanPhotos";
+import NotFound from "./pages/NotFound";
 import Layout from "./components/Layout";
 import HostLayout from "./components/HostLayout";
-import Reviews from "./pages/host/Reviews";
-import Income from "./pages/host/Income";
-import Dashboard from "./pages/host/Dashboard";
-import HostVans from "./pages/Host/HostVans";
-import HostVanDetail from "./pages/Host/HostVanDetail";
-import HostVanInfo from "./pages/host/HostVanInfo";
-import HostVanPricing from "./pages/host/HostVanPricing";
-import HostVanPhotos from "./pages/host/HostVanPhotos";
-import NotFound from "./pages/NotFound";
-import Login from "./pages/Login";
-import Auth from "./components/Auth";
+import AuthRequired from "./components/AuthRequired";
+
+import "./App.css";
+import "./server";
 
 export default function App() {
+  /**
+   * Challenge: Create the AuthRequired Layout Route to protect
+   * all the /host routes.
+   *
+   * For now, just use `const authenticated = false`
+   * to determine the authenticated status of the user, and
+   * either send them to the /login route, or render the Outlet
+   */
+
   return (
     <BrowserRouter>
       <Routes>
@@ -31,7 +41,7 @@ export default function App() {
           <Route path="vans/:id" element={<VanDetail />} />
           <Route path="login" element={<Login />} />
 
-          <Route element={<Auth />}>
+          <Route element={<AuthRequired />}>
             <Route path="host" element={<HostLayout />}>
               <Route index element={<Dashboard />} />
               <Route path="income" element={<Income />} />
