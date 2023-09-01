@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useFetchData } from "../../hooks/useFetchData";
 
 export default function HostVans() {
-  const vans = useFetchData("/api/host/vans");
+  const { data: vans, loading, error } = useFetchData("/api/host/vans");
 
   const hostVansEls = vans.map((van) => (
     <Link to={van.id} key={van.id} className="host-van-link-wrapper">
@@ -16,6 +16,18 @@ export default function HostVans() {
       </div>
     </Link>
   ));
+
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
+
+  if (error) {
+    return (
+      <h2>
+        there is an Error: <br /> {error.message}
+      </h2>
+    );
+  }
 
   return (
     <section>

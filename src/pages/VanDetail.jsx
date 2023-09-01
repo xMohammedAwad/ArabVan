@@ -6,11 +6,22 @@ export default function VanDetail() {
   const { id } = useParams();
   const location = useLocation();
 
-  const van = useFetchData(`/api/vans/${id}`);
+  const { data: van, loading, error } = useFetchData(`/api/vans/${id}`);
 
   const search = location.state?.search || "";
   const type = location.state?.type || "all";
+  
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
 
+  if (error) {
+    return (
+      <h2>
+        there is an Error: <br /> {error.message}
+      </h2>
+    );
+  }
   return (
     <div className="van-detail-container">
       <Link to={`..${search}`} relative="path" className="back-button">

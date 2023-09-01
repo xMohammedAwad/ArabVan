@@ -4,7 +4,11 @@ import { useFetchData } from "../../hooks/useFetchData";
 
 export default function HostVanDetail() {
   const { id } = useParams();
-  const currentVan = useFetchData(`/api/host/vans/${id}`);
+  const {
+    data: currentVan,
+    loading,
+    error,
+  } = useFetchData(`/api/host/vans/${id}`);
 
   const activeStyles = {
     fontWeight: "bold",
@@ -12,9 +16,18 @@ export default function HostVanDetail() {
     color: "#161616",
   };
 
-  if (!currentVan) {
-    return <h1>Loading...</h1>;
+  if (loading) {
+    return <h2>Loading...</h2>;
   }
+
+  if (error) {
+    return (
+      <h2>
+        there is an Error: <br /> {error.message}
+      </h2>
+    );
+  }
+
   return (
     <section>
       <Link to=".." relative="path" className="back-button">

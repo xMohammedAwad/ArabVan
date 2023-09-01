@@ -1,13 +1,22 @@
-import React from "react";
+import { useEffect, useState } from "react";
 
 export function useFetchData(url) {
-  const [data, setData] = React.useState([]);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
+    setLoading(true);
+    setError(null);
     fetch(url)
       .then((res) => res.json())
-      .then((data) => setData(data.vans))
-      .catch((error) => console.log("Error fetching data:", error));
+      .then((data) => {
+        setData(data.vans);
+      })
+      .catch((error) => setError(error))
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
-  return data;
+  return { data, loading, error };
 }

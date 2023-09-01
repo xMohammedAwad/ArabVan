@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useFetchData } from "../hooks/useFetchData";
 import VanElement from "../components/VanElement";
 
@@ -31,6 +31,14 @@ export default function Vans() {
       }
       return prevParams;
     });
+  }
+  
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
+
+  if (error) {
+    return <h2>there is an Error: <br/> {error.message}</h2>;
   }
 
   return (
