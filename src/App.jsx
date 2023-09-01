@@ -16,10 +16,6 @@ import HostVanDetail from "./pages/Host/HostVanDetail";
 import HostVanInfo from "./pages/host/HostVanInfo";
 import HostVanPricing from "./pages/host/HostVanPricing";
 import HostVanPhotos from "./pages/host/HostVanPhotos";
-import NotFound from "./pages/NotFound";
-import Login from "./pages/Login";
-import AuthRequired from "./components/AuthRequired";
-
 export default function App() {
   return (
     <BrowserRouter>
@@ -44,8 +40,6 @@ export default function App() {
               </Route>
             </Route>
           </Route>
-
-          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

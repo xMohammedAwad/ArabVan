@@ -20,11 +20,13 @@ export default function HostVans() {
             }
         }
         loadVans()
+
     }, [])
 
     const hostVansEls = vans.map(van => (
         <Link
             to={van.id}
+
             key={van.id}
             className="host-van-link-wrapper"
         >
@@ -45,6 +47,7 @@ export default function HostVans() {
     if (error) {
         return <h1>There was an error: {error.message}</h1>
     }
+
 
     return (
         <section>
