@@ -1,36 +1,25 @@
 import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useFetchData } from "../hooks/useFetchData";
+import VanElement from "../components/VanElement";
 
 export default function Vans() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const typeFilter = searchParams.get("type");
-  const vans = useFetchData("api/vans")
+
+  const { data: vans, loading, error } = useFetchData("api/vans");
   const displayedVans = typeFilter
     ? vans.filter((van) => van.type === typeFilter)
     : vans;
 
   const vanElements = displayedVans.map((van) => (
-    <div key={van.id} className="van-tile">
-      <Link
-        to={van.id}
-        state={{
-          search: `?${searchParams.toString()}`,
-          type: typeFilter,
-        }}
-      >
-        <img src={van.imageUrl} />
-        <div className="van-info">
-          <h3>{van.name}</h3>
-          <p>
-            ${van.price}
-            <span>/day</span>
-          </p>
-        </div>
-        <i className={`van-type ${van.type} selected`}>{van.type}</i>
-      </Link>
-    </div>
+    <VanElement
+      key={van.id}
+      searchParams={searchParams}
+      typeFilter={typeFilter}
+      van={van}
+    />
   ));
 
   function handleFilterChange(key, value) {
