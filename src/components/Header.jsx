@@ -1,12 +1,22 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Navigation from "./Navigation";
 
 export default function Header() {
-  const activeStyles = {
-    fontWeight: "bold",
-    textDecoration: "underline",
-    color: "#161616",
-  };
+  const links = [
+    {
+      to: "/host",
+      children: "Host",
+    },
+    {
+      to: "/about",
+      children: "About",
+    },
+    {
+      to: "/vans",
+      children: "Vans",
+    },
+  ];
 
   return (
     <header>
@@ -14,24 +24,8 @@ export default function Header() {
         #VanLife
       </Link>
       <nav>
-        <NavLink
-          to="/host"
-          style={({ isActive }) => (isActive ? activeStyles : null)}
-        >
-          Host
-        </NavLink>
-        <NavLink
-          to="/about"
-          style={({ isActive }) => (isActive ? activeStyles : null)}
-        >
-          About
-        </NavLink>
-        <NavLink
-          to="/vans"
-          style={({ isActive }) => (isActive ? activeStyles : null)}
-        >
-          Vans
-        </NavLink>
+        <Navigation links={links} />
+
         <Link to="login" className="login-link">
           <img src="/assets/images/avatar-icon.png" className="login-icon" />
         </Link>
