@@ -51,7 +51,7 @@ export default function Vans() {
         </Link>
       </div>
     ));
-  }, [displayedVans]);
+  }, [vans,typeFilter]);
 
   const handleFilterChange = useCallback(
     (key, value) => {
