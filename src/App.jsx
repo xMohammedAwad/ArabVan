@@ -1,5 +1,4 @@
-import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes } from "react-router-dom";
 import RenderRoutes from "./components/renderRoutes";
 import routes from "./routes";
 

@@ -1,12 +1,12 @@
-import React from "react";
-import { useParams, Link, NavLink, Outlet } from "react-router-dom";
+import { useParams, Link, Outlet } from "react-router-dom";
 import { getVan } from "../../api";
 import Navigation from "../../components/Navigation";
+import { useEffect, useState } from "react";
 
 export default function HostVanDetail() {
-  const [currentVan, setCurrentVan] = React.useState(null);
-  const [loading, setLoading] = React.useState(false);
-  const [error, setError] = React.useState(null);
+  const [currentVan, setCurrentVan] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const { id } = useParams();
 
   const links = [
@@ -15,7 +15,7 @@ export default function HostVanDetail() {
     { to: "photos", children: "Photos" },
   ];
 
-  React.useEffect(() => {
+  useEffect(() => {
     async function loadVans() {
       setLoading(true);
       try {

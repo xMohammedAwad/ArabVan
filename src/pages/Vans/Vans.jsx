@@ -1,16 +1,16 @@
-import React, { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { getVans } from "../../api";
 
 export default function Vans() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [vans, setVans] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
-  const [error, setError] = React.useState(null);
+  const [vans, setVans] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const typeFilter = searchParams.get("type");
 
-  React.useEffect(() => {
+  useEffect(() => {
     async function loadVans() {
       setLoading(true);
       try {
@@ -51,7 +51,7 @@ export default function Vans() {
         </Link>
       </div>
     ));
-  }, [vans,typeFilter]);
+  }, [vans, typeFilter]);
 
   const handleFilterChange = useCallback(
     (key, value) => {
