@@ -14,7 +14,7 @@ export default function Navigation({ links }) {
       end={link.end}
       style={({ isActive }) => (isActive ? activeStyles : null)}
     >
-      {link.children}
+      {link.label}
     </NavLink>
   ));
 }

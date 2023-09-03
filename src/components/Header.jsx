@@ -5,15 +5,15 @@ export default function Header() {
   const links = [
     {
       to: "/host",
-      children: "Host",
+      label: "Host",
     },
     {
       to: "/about",
-      children: "About",
+      label: "About",
     },
     {
       to: "/vans",
-      children: "Vans",
+      label: "Vans",
     },
   ];
 

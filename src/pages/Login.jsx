@@ -1,14 +1,14 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { loginUser } from "../api";
 
 export default function Login() {
-  const [loginFormData, setLoginFormData] = React.useState({
+  const [loginFormData, setLoginFormData] = useState({
     email: "",
     password: "",
   });
-  const [status, setStatus] = React.useState("idle");
-  const [error, setError] = React.useState(null);
+  const [status, setStatus] = useState("idle");
+  const [error, setError] = useState(null);
 
   const location = useLocation();
   const navigate = useNavigate();

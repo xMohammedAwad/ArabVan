@@ -3,10 +3,10 @@ import Navigation from "./Navigation";
 
 export default function HostLayout() {
   const links = [
-    { to: ".", end: true, children: "Dashboard" },
-    { to: "income", children: "income" },
-    { to: "vans", children: "vans" },
-    { to: "reviews", children: "reviews" },
+    { to: ".", end: true, label: "Dashboard" },
+    { to: "income", label: "income" },
+    { to: "vans", label: "vans" },
+    { to: "reviews", label: "reviews" },
   ];
   return (
     <>
