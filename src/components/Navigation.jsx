@@ -7,8 +7,9 @@ export default function Navigation({ links }) {
     color: "#161616",
   };
 
-  return links.map((link) => (
+  return links.map((link, i) => (
     <NavLink
+      key={i}
       to={link.to}
       end={link.end}
       style={({ isActive }) => (isActive ? activeStyles : null)}
