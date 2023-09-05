@@ -42,9 +42,8 @@ export function useLoginForm(label) {
   const handleSignOut = useCallback(() => {
     signOut(auth)
       .then(() => {
-        console.log("User signed out");
         localStorage.removeItem("loggedin");
-        navigate("/login");
+        navigate("/login", { replace: true });
         setStatus("idle");
       })
       .catch((error) => {
@@ -57,16 +56,11 @@ export function useLoginForm(label) {
       e.preventDefault();
       setStatus("submitting");
       apiMethod(auth, formData.email, formData.password)
-        .then((userCredential) => {
-          const user = userCredential.user;
+        .then(() => {
           handleLoginSuccess();
-          console.log(userCredential);
         })
         .catch((err) => {
           handleLoginError(err);
-        })
-        .finally(() => {
-          console.log(formData.email);
         });
     },
     [auth, formData, apiMethod, handleLoginSuccess, handleLoginError]
@@ -84,15 +78,18 @@ export function useLoginForm(label) {
   );
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         console.log("User is signed in");
         handleLoginSuccess();
       } else {
         console.log("User is signed out");
         handleSignOut();
+        unsubscribe();
       }
     });
+
+    return () => unsubscribe();
   }, [auth, handleLoginSuccess, handleSignOut]);
 
   return {
