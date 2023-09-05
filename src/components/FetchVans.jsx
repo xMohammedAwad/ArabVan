@@ -3,7 +3,7 @@ import useFetchData from "../hooks/useFetchData";
 import { getVans } from "../api";
 import RenderVans from "./RenderVans";
 
-export default function FetchVans({ typeFilter, searchParams }) {
+export default function FetchVans({ typeFilter }) {
   const { data: vans, loading, error } = useFetchData(getVans);
 
   if (loading) {
@@ -16,7 +16,6 @@ export default function FetchVans({ typeFilter, searchParams }) {
   return (
     <RenderVans
       typeFilter={typeFilter}
-      searchParams={searchParams}
       vans={vans}
     />
   );

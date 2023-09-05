@@ -13,7 +13,7 @@ export default function VansContainer() {
         typeFilter={typeFilter}
       />
       <div className="van-list">
-        <FetchVans typeFilter={typeFilter} searchParams={searchParams} />
+        <FetchVans typeFilter={typeFilter} />
       </div>
     </>
   );
