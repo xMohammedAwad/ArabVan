@@ -15,6 +15,7 @@ import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
 import VanDetail from "./pages/Vans/VanDetail/VanDetail";
 import Vans from "./pages/Vans/Vans/Vans";
+import Signup from "./pages/Signup/Signup";
 
 const routes = [
   {
@@ -26,6 +27,7 @@ const routes = [
       { path: "vans", element: Vans },
       { path: "vans/:id", element: VanDetail },
       { path: "login", element: Login },
+      { path: "signup", element: Signup },
       {
         path: "/host",
         element: AuthRequired,

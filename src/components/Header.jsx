@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Navigation from "./Navigation";
-import { useEffect } from "react";
+import { useLoginForm } from "../hooks/useLoginForm";
 
 export default function Header() {
   const links = [
@@ -18,7 +18,7 @@ export default function Header() {
     },
   ];
 
-
+  const { handleSignOut } = useLoginForm();
   return (
     <header>
       <Link className="site-logo" to="/">
@@ -30,6 +30,7 @@ export default function Header() {
         <Link to="login" className="login-link">
           <img src="/assets/images/avatar-icon.png" className="login-icon" />
         </Link>
+        <button onClick={() => handleSignOut()}>logOut</button>
       </nav>
     </header>
   );

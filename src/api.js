@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+
 import {
   getFirestore,
   collection,
@@ -19,7 +20,7 @@ const firebaseConfig = {
   appId: "1:415807554181:web:cf1789fff800adfefd9fec",
 };
 
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // Refactoring the fetching functions below
@@ -83,20 +84,3 @@ It also shows how you can chain together multiple `where` filter calls
 //     return vans[0]
 // }
 
-export async function loginUser(creds) {
-  const res = await fetch("/api/login", {
-    method: "post",
-    body: JSON.stringify(creds),
-  });
-  const data = await res.json();
-
-  if (!res.ok) {
-    throw {
-      message: data.message,
-      statusText: res.statusText,
-      status: res.status,
-    };
-  }
-
-  return data;
-}

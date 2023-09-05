@@ -3,7 +3,6 @@ import RenderRoutes from "./components/renderRoutes";
 import routes from "./routes";
 
 import "./App.css";
-import "./server";
 
 export default function App() {
   return (

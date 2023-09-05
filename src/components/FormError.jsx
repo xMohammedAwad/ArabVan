@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function FormError({ location, error }) {
-  const locationState = location.state?.message;
+  const locationState = location && location.state?.message;
   return (
     <>
       {locationState && (

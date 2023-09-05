@@ -3,9 +3,9 @@ import FormError from "./FormError";
 import FormInput from "./FormInput";
 import SubmitButton from "./SubmitButton";
 
-function LoginForm() {
+function SignupForm() {
   const { formData, status, error, handleSubmit, handleChange, location } =
-    useLoginForm("Login");
+    useLoginForm("Signup");
 
   return (
     <form onSubmit={handleSubmit} className="login-form">
@@ -23,9 +23,9 @@ function LoginForm() {
       />
       <FormError error={error} location={location} />
 
-      <SubmitButton status={status} label={"Log in"} />
+      <SubmitButton status={status} label={"Sign up"} />
     </form>
   );
 }
 
-export default LoginForm;
+export default SignupForm;
