@@ -1,13 +1,12 @@
-import React from "react";
 import { useLoginForm } from "../hooks/useLoginForm";
 import FormError from "./FormError";
 
 function LoginForm() {
-  const { loginFormData, status, error, handleSubmit, handleChange, location } =
+  const { loginFormData, status, error, handleLogin, location, handleChange } =
     useLoginForm();
 
   return (
-    <form onSubmit={handleSubmit} className="login-form">
+    <form onSubmit={handleLogin} className="login-form">
       <input
         name="email"
         onChange={handleChange}

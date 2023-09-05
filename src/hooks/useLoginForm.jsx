@@ -1,38 +1,39 @@
 import { useCallback, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import { loginUser } from "../api";
+import useRedirectOnLogin from "./useRedirectOnLogin";
 
 export function useLoginForm() {
-  const location = useLocation();
-  const from = location.state?.from || "/host";
-
   const [loginFormData, setLoginFormData] = useState({
     email: "",
     password: "",
   });
+  const location = useRedirectOnLogin();
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState(null);
 
-  const navigate = useNavigate();
+  const handleLoginSuccess = () => {
+    localStorage.setItem("loggedin", true);
+    setStatus("idle");
+  };
 
-  const handleSubmit = useCallback(
+  const handleLoginError = (err) => {
+    setError(err);
+    setStatus("idle");
+  };
+
+  const handleLogin = useCallback(
     (e) => {
       e.preventDefault();
       setStatus("submitting");
       loginUser(loginFormData)
         .then((data) => {
-          setError(null);
-          localStorage.setItem("loggedin", true);
-          navigate(from, { replace: true });
+          handleLoginSuccess();
         })
         .catch((err) => {
-          setError(err);
-        })
-        .finally(() => {
-          setStatus("idle");
+          handleLoginError(err);
         });
     },
-    [loginFormData, from, navigate]
+    [loginFormData]
   );
 
   const handleChange = useCallback((e) => {
@@ -47,7 +48,7 @@ export function useLoginForm() {
     loginFormData,
     status,
     error,
-    handleSubmit,
+    handleLogin,
     handleChange,
     location,
   };
