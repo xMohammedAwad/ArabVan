@@ -1,9 +1,11 @@
 import { useCallback, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { loginUser } from "../api";
 
-export function useLoginForm(from) {
-  
+export function useLoginForm() {
+  const location = useLocation();
+  const from = location.state?.from || "/host";
+
   const [loginFormData, setLoginFormData] = useState({
     email: "",
     password: "",
@@ -47,5 +49,6 @@ export function useLoginForm(from) {
     error,
     handleSubmit,
     handleChange,
+    location,
   };
 }

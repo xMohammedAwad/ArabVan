@@ -1,6 +1,11 @@
 import React from "react";
+import { useLoginForm } from "../hooks/useLoginForm";
+import FormError from "./FormError";
 
-function LoginForm({ loginFormData, status, handleSubmit, handleChange }) {
+function LoginForm() {
+  const { loginFormData, status, error, handleSubmit, handleChange, location } =
+    useLoginForm();
+
   return (
     <form onSubmit={handleSubmit} className="login-form">
       <input
@@ -17,6 +22,9 @@ function LoginForm({ loginFormData, status, handleSubmit, handleChange }) {
         placeholder="Password"
         value={loginFormData.password}
       />
+
+      <FormError location={location} error={error} />
+
       <button disabled={status === "submitting"}>
         {status === "submitting" ? "Logging in..." : "Log in"}
       </button>
