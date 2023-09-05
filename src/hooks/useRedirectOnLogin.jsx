@@ -6,9 +6,11 @@ export default function useRedirectOnLogin(status) {
   const from = location.state?.from || "/host";
   const navigate = useNavigate();
 
+  useEffect(() => {
     if (localStorage.getItem("loggedin")) {
       navigate(from, { replace: true });
     }
+  }, [localStorage.getItem("loggedin"), from]);
 
   return location;
 }

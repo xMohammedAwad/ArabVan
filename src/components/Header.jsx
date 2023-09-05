@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Navigation from "./Navigation";
+import { useEffect } from "react";
 
 export default function Header() {
   const links = [
@@ -16,6 +17,7 @@ export default function Header() {
       label: "Vans",
     },
   ];
+
 
   return (
     <header>

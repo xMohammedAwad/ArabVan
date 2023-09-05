@@ -1,5 +1,5 @@
-import VansContainer from "../../components/VansContainer";
-
+import VansContainer from "../../../components/VansContainer";
+import "./Vans.css";
 export default function Vans() {
   return (
     <div className="van-list-container">

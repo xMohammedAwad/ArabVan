@@ -1,0 +1,42 @@
+
+/*** ABOUT PAGE ***/
+.about-hero-image {
+    max-width: 100%;
+}
+
+.about-page-content {
+    padding-inline: 23px;
+    color: #161616;
+    margin-bottom: 55px;
+}
+
+.about-page-content h1 {
+    line-height: 38px;
+}
+
+.about-page-content p {
+    line-height: 22px;
+}
+
+.about-page-cta {
+    background-color: #ffcc8d;
+    color: #161616;
+    padding-inline: 32px;
+    padding-bottom: 32px;
+    margin-inline: 27px;
+    border-radius: 5px;
+}
+
+.about-page-cta h2 {
+    margin: 0;
+    padding-block: 37px;
+}
+
+.about-page-cta .link-button {
+    background-color: #161616;
+    color: white;
+    border-radius: 10px;
+}
+
+
+
