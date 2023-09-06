@@ -5,7 +5,7 @@ export default function RenderRoutes(routes) {
     <Route
       key={route.path}
       path={route.path}
-      element={route.element ? <route.element /> : null}
+      element={route.element ? route.element : null}
     >
       {route.children && RenderRoutes(route.children)}
     </Route>

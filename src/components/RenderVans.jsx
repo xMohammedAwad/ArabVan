@@ -5,6 +5,7 @@ export default function RenderVans({ vans, typeFilter }) {
   const displayedVans = useMemo(() => {
     return typeFilter ? vans.filter((van) => van.type === typeFilter) : vans;
   }, [vans, typeFilter]);
+  
   return displayedVans.map((van) => (
     <div key={van.id} className="van-tile">
       <Link

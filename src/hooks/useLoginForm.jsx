@@ -29,6 +29,9 @@ export function useLoginForm(label) {
   const [error, setError] = useState(null);
 
   const handleLoginSuccess = useCallback(() => {
+    if (localStorage.getItem("loggedin")) {
+      return;
+    }
     localStorage.setItem("loggedin", true);
     navigate(from, { replace: true });
     setStatus("idle");
@@ -82,15 +85,11 @@ export function useLoginForm(label) {
       if (user) {
         console.log("User is signed in");
         handleLoginSuccess();
-      } else {
-        console.log("User is signed out");
-        handleSignOut();
-        unsubscribe();
       }
     });
 
     return () => unsubscribe();
-  }, [auth, handleLoginSuccess, handleSignOut]);
+  }, [auth, handleLoginSuccess]);
 
   return {
     formData,
