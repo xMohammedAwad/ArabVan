@@ -1,12 +1,16 @@
 import React from "react";
-import useFetchData from "../hooks/useFetchData";
 import { getHostVans } from "../api";
 import RenderHostVans from "./RenderHostVans";
+import { useAsync } from "../hooks/useAsync";
 
 export default function FetchHostVans() {
-  const { data: vans, loading, error } = useFetchData(getHostVans);
+  const { value: vans, status, error } = useAsync(getHostVans);
 
-  if (loading) {
+  if (vans === null || vans === undefined) {
+    return null;
+  }
+
+  if (status === "pending") {
     return <h1>Loading...</h1>;
   }
 

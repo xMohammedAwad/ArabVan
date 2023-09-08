@@ -109,3 +109,7 @@ footer {
 .link-button:hover {
     transform: translate(1px, 1px);
 }
+.error{
+    color: red;
+    padding-left: 15px;
+}

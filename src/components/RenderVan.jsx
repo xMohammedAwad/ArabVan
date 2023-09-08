@@ -1,4 +1,7 @@
-export default function RenderVan({ van }) {
+import { memo } from "react";
+import { Link } from "react-router-dom";
+
+function RenderVan({ van, vanId }) {
   return (
     <>
       {van && (
@@ -10,9 +13,13 @@ export default function RenderVan({ van }) {
             <span>${van.price}</span>/day
           </p>
           <p>{van.description}</p>
-          <button className="link-button">Rent this van</button>
+          <Link to={`/checkout?vanId=${vanId}&hostId=${van.hostId}`} className="link-button">
+            <button className="link-button">Rent this van</button>
+          </Link>
         </div>
       )}
     </>
   );
 }
+
+export default memo(RenderVan);

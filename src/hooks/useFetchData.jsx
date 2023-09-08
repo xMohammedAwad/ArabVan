@@ -17,6 +17,7 @@ export default function useFetchData(fetchFunction) {
         setLoading(false);
       }
     })();
-  }, []);
+  }, [fetchFunction]);
+
   return { data, loading, error };
 }

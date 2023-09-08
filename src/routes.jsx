@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from "react";
 import AuthRequired from "./components/AuthRequired";
 import HostLayout from "./components/HostLayout";
 import Layout from "./components/Layout";
+import Checkout from "./pages/Checkout/Checkout";
 
 const About = lazy(() => import("./pages/About/About"));
 const Home = lazy(() => import("./pages/Home/Home"));
@@ -59,6 +60,14 @@ const routes = [
         element: (
           <Suspense fallback={null}>
             <VanDetail />
+          </Suspense>
+        ),
+      },
+      {
+        path: "checkout",
+        element: (
+          <Suspense fallback={null}>
+            <Checkout />
           </Suspense>
         ),
       },

@@ -1,7 +1,4 @@
-import { initializeApp } from "firebase/app";
-
 import {
-  getFirestore,
   collection,
   doc,
   getDocs,
@@ -9,21 +6,16 @@ import {
   query,
   where,
   documentId,
+  getFirestore,
+  addDoc,
+  updateDoc,
+  Timestamp,
 } from "firebase/firestore/lite";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDRNORl1pZl4yltgWjVG2DeXYFTda1eGmY",
-  authDomain: "vanlife-6e5e4.firebaseapp.com",
-  projectId: "vanlife-6e5e4",
-  storageBucket: "vanlife-6e5e4.appspot.com",
-  messagingSenderId: "415807554181",
-  appId: "1:415807554181:web:cf1789fff800adfefd9fec",
-};
+import { app } from "./firebase";
 
-export const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+export const db = getFirestore(app);
 
-// Refactoring the fetching functions below
 const vansCollectionRef = collection(db, "vans");
 
 export async function getVans() {
@@ -54,33 +46,69 @@ export async function getHostVans() {
   return vans;
 }
 
-/* 
-This 👇 isn't normally something you'd need to do. Instead, you'd 
-set up Firebase security rules so only the currently logged-in user 
-could edit their vans.
+export async function getHostVan(id) {
+  const q = query(
+    vansCollectionRef,
+    where(documentId(), "==", id),
+    where("hostId", "==", "123")
+  );
+  const snapshot = await getDocs(q);
+  const vans = snapshot.docs.map((doc) => ({
+    ...doc.data(),
+    id: doc.id,
+  }));
+  return vans[0];
+}
 
-https://firebase.google.com/docs/rules
+export async function rentVan(vanId, userId, startDate, endDate) {
+  const vanDocRef = doc(db, "vans", vanId);
+  const vanSnapshot = await getDoc(vanDocRef);
 
-I'm just leaving this here for educational purposes, as it took
-me a while to find the `documentId()` function that allows you
-to use a where() filter on a document's ID property. (Since normally
-it only looks at the data() properties of the document, meaning you
-can't do `where("id", "==", id))`
+  if (!vanSnapshot.exists()) {
+    throw new Error("Van does not exist");
+  }
 
-It also shows how you can chain together multiple `where` filter calls
-*/
+  const rentalsCollectionRef = collection(db, "rentals");
 
-// export async function getHostVan(id) {
-//     const q = query(
-//         vansCollectionRef,
-//         where(documentId(), "==", id),
-//         where("hostId", "==", "123")
-//     )
-//     const snapshot = await getDocs(q)
-//     const vans = snapshot.docs.map(doc => ({
-//         ...doc.data(),
-//         id: doc.id
-//     }))
-//     return vans[0]
-// }
+  const startOverlappingRentalsQuery = query(
+    rentalsCollectionRef,
+    where("vanId", "==", vanId),
+    where("startDate", "<=", startDate)
+  );
 
+  const startOverlappingRentalsSnapshot = await getDocs(
+    startOverlappingRentalsQuery
+  );
+
+  const endOverlappingRentalsQuery = query(
+    rentalsCollectionRef,
+    where("vanId", "==", vanId),
+    where("endDate", ">=", endDate)
+  );
+
+  const endOverlappingRentalsSnapshot = await getDocs(
+    endOverlappingRentalsQuery
+  );
+
+  console.log(startOverlappingRentalsSnapshot, endOverlappingRentalsSnapshot);
+
+  if (
+    !endOverlappingRentalsSnapshot.empty &&
+    !startOverlappingRentalsSnapshot.empty
+  ) {
+    throw new Error("Van is already rented during the requested period");
+  }
+
+  await updateDoc(vanDocRef, {
+    isRented: true,
+  });
+
+  await addDoc(rentalsCollectionRef, {
+    vanId,
+    userId,
+    startDate,
+    endDate,
+  });
+
+  console.log("Rental successful!");
+}
