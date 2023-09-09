@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import FilterButtons from "./FilterButtons";
-import FetchVans from "./FetchVans";
+import { FetchVans } from "./index";
 
 export default function VansContainer() {
   const [searchParams, setSearchParams] = useSearchParams();

@@ -1,19 +1,22 @@
 import { memo } from "react";
 import { Link } from "react-router-dom";
 
-function RenderVan({ van, vanId }) {
+function RenderVan({ data, vanId }) {
   return (
     <>
-      {van && (
+      {data && (
         <div className="van-detail">
-          <img src={van.imageUrl} />
-          <i className={`van-type ${van.type} selected`}>{van.type}</i>
-          <h2>{van.name}</h2>
+          <img src={data.imageUrl} />
+          <i className={`van-type ${data.type} selected`}>{data.type}</i>
+          <h2>{data.name}</h2>
           <p className="van-price">
-            <span>${van.price}</span>/day
+            <span>${data.price}</span>/day
           </p>
-          <p>{van.description}</p>
-          <Link to={`/checkout?vanId=${vanId}&hostId=${van.hostId}`} className="link-button">
+          <p>{data.description}</p>
+          <Link
+            to={`/checkout?vanId=${vanId}&hostId=${data.hostId}`}
+            className="link-button"
+          >
             <button className="link-button">Rent this van</button>
           </Link>
         </div>

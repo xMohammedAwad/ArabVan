@@ -1,11 +1,11 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 
-export default function RenderVans({ vans, typeFilter }) {
+export default function RenderVans({ data, typeFilter }) {
   const displayedVans = useMemo(() => {
-    return typeFilter ? vans.filter((van) => van.type === typeFilter) : vans;
-  }, [vans, typeFilter]);
-  
+    return typeFilter ? data.filter((van) => van.type === typeFilter) : data;
+  }, [data, typeFilter]);
+
   return displayedVans.map((van) => (
     <div key={van.id} className="van-tile">
       <Link

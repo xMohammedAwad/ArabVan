@@ -1,5 +1,5 @@
 import BackButton from "../../../components/BackButton";
-import FetchHostVan from "../../../components/FetchHostVan";
+import {FetchHostVan} from "../../../components/index";
 import "./HostVanDetail.css";
 export default function HostVanDetail() {
   return (

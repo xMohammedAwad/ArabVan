@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
-export default function RenderHostVans({ vans }) {
+export default function RenderHostdata({ data }) {
   return (
     <>
-      {vans.map((van) => (
+      {data.map((van) => (
         <Link to={van.id} key={van.id} className="host-van-link-wrapper">
           <div className="host-van-single" key={van.id}>
             <img src={van.imageUrl} alt={`Photo of ${van.name}`} />
