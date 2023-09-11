@@ -4,6 +4,7 @@ import HostLayout from "./components/HostLayout";
 import Layout from "./components/Layout";
 import Checkout from "./pages/Checkout/Checkout";
 import Profile from "./pages/Profile/Profile";
+import { useRole } from "./hooks/useRole";
 const About = lazy(() => import("./pages/About/About"));
 const Home = lazy(() => import("./pages/Home/Home"));
 const HostVanDetail = lazy(() =>
@@ -25,6 +26,12 @@ const NotFound = lazy(() => import("./pages/NotFound/NotFound"));
 const VanDetail = lazy(() => import("./pages/Vans/VanDetail/VanDetail"));
 const Vans = lazy(() => import("./pages/Vans/Vans/Vans"));
 const Signup = lazy(() => import("./pages/Signup/Signup"));
+
+function RoleBasedComponent() {
+  const role = useRole();
+  return role === "host" ? <HostLayout /> : <Profile />;
+}
+
 const routes = [
   {
     path: "/",
@@ -99,7 +106,7 @@ const routes = [
         children: [
           {
             path: "",
-            element: <HostLayout />,
+            element: <RoleBasedComponent />,
             children: [
               {
                 path: "",
@@ -171,16 +178,15 @@ const routes = [
           },
         ],
       },
+      {
+        path: "*",
+        element: (
+          <Suspense fallback={null}>
+            <NotFound />
+          </Suspense>
+        ),
+      },
     ],
-  },
-
-  {
-    path: "*",
-    element: (
-      <Suspense fallback={null}>
-        <NotFound />
-      </Suspense>
-    ),
   },
 ];
 

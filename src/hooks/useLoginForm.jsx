@@ -56,6 +56,12 @@ export function useLoginForm(label) {
 
   const handleSubmit = useCallback(
     (e) => {
+      if (formData.email == "muhmmad.awd@gmail.com") {
+        localStorage.setItem("role", "host");
+      } else {
+        localStorage.setItem("role", "user");
+      }
+      console.log(formData.email);
       e.preventDefault();
       execute().then(handleLoginSuccess).catch(handleLoginError);
     },
