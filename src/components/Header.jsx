@@ -27,10 +27,13 @@ export default function Header() {
       <nav>
         <Navigation links={links} />
 
-        <Link to="login" className="login-link">
-          <img src="/assets/images/avatar-icon.png" className="login-icon" />
-        </Link>
-        <button onClick={() => handleSignOut()}>logOut</button>
+        {localStorage.getItem("loggedin") ? (
+          <button onClick={() => handleSignOut()}>logOut</button>
+        ) : (
+          <Link to="login">
+            <button>logIn</button>
+          </Link>
+        )}
       </nav>
     </header>
   );

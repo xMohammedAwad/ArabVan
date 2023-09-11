@@ -25,7 +25,6 @@ const NotFound = lazy(() => import("./pages/NotFound/NotFound"));
 const VanDetail = lazy(() => import("./pages/Vans/VanDetail/VanDetail"));
 const Vans = lazy(() => import("./pages/Vans/Vans/Vans"));
 const Signup = lazy(() => import("./pages/Signup/Signup"));
-
 const routes = [
   {
     path: "/",
@@ -91,17 +90,16 @@ const routes = [
         ],
       },
       {
+        path: "profile",
+        element: <Profile />,
+      },
+      {
         path: "/host",
         element: <AuthRequired />,
         children: [
           {
             path: "",
-            element:
-              localStorage.getItem("role") === "host" ? (
-                <HostLayout />
-              ) : (
-                <Profile />
-              ),
+            element: <HostLayout />,
             children: [
               {
                 path: "",
