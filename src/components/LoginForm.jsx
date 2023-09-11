@@ -18,6 +18,7 @@ function LoginForm() {
       <FormInput
         type="password"
         name="password"
+        autoComplete="current-password"
         value={formData.password}
         onChange={handleChange}
       />

@@ -3,7 +3,7 @@ import AuthRequired from "./components/AuthRequired";
 import HostLayout from "./components/HostLayout";
 import Layout from "./components/Layout";
 import Checkout from "./pages/Checkout/Checkout";
-
+import Profile from "./pages/Profile/Profile";
 const About = lazy(() => import("./pages/About/About"));
 const Home = lazy(() => import("./pages/Home/Home"));
 const HostVanDetail = lazy(() =>
@@ -64,14 +64,6 @@ const routes = [
         ),
       },
       {
-        path: "checkout",
-        element: (
-          <Suspense fallback={null}>
-            <Checkout />
-          </Suspense>
-        ),
-      },
-      {
         path: "login",
         element: (
           <Suspense fallback={null}>
@@ -88,12 +80,28 @@ const routes = [
         ),
       },
       {
+        path: "checkout",
+
+        element: <AuthRequired />,
+        children: [
+          {
+            path: "",
+            element: <Checkout />,
+          },
+        ],
+      },
+      {
         path: "/host",
         element: <AuthRequired />,
         children: [
           {
             path: "",
-            element: <HostLayout />,
+            element:
+              localStorage.getItem("role") === "host" ? (
+                <HostLayout />
+              ) : (
+                <Profile />
+              ),
             children: [
               {
                 path: "",

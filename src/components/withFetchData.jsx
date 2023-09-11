@@ -20,6 +20,6 @@ export default function withFetchData(WrappedComponent, fetchData) {
       return <h1>There was an error: {error.message}</h1>;
     }
 
-    return <WrappedComponent data={value} {...props} />;
+    return <WrappedComponent data={value} vanId={id} {...props} />;
   };
 }

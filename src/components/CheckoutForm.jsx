@@ -36,6 +36,13 @@ export default function CheckoutForm() {
       // If payment is successful, rent the van
       if (paymentResult) {
         await rentVanAsync();
+        Swal.fire({
+          title: "Good job",
+          text: "Your van has been rented successfully",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 2000,
+        });
       }
     } catch (error) {
       console.error("Error processing payment:", error);
