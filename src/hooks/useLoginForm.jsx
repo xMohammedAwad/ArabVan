@@ -22,37 +22,27 @@ export function useLoginForm(label) {
       : createUserWithEmailAndPassword;
 
   const location = useLocation();
-  const from = location.state?.from || "/host";
+  let from = "";
+  if (location.pathname.startsWith("/host")) {
+    from = location.pathname;
+  } else {
+    from = location.state?.from || "/host";
+  }
+
   const navigate = useNavigate();
   const auth = getAuth(app);
-
-  const handleLoginSuccess = useCallback(() => {
-    if (localStorage.getItem("loggedin")) {
-      return;
-    }
-    localStorage.setItem("loggedin", true);
-    navigate(from, { replace: true });
-  }, [localStorage]);
-
-  const handleLoginError = useCallback((err) => {
-    console.log("this error from handleLoginError", err);
-  }, []);
-
-  const handleSignOut = useCallback(() => {
-    signOut(auth)
-      .then(() => {
-        localStorage.removeItem("loggedin");
-        navigate("/login", { replace: true });
-      })
-      .catch((error) => {
-        console.error("Error signing out: ", error);
-      });
-  }, [auth, localStorage]);
 
   const { execute, status, error } = useAsync(
     () => apiMethod(auth, formData.email, formData.password),
     false
   ); // do not run immediately
+
+  const handleSignOut = useCallback(() => {
+    signOut(auth).then(() => {
+      localStorage.removeItem("loggedin");
+      navigate("/login", { replace: true });
+    });
+  }, [auth, localStorage]);
 
   const handleSubmit = useCallback(
     (e) => {
@@ -61,11 +51,10 @@ export function useLoginForm(label) {
       } else {
         localStorage.setItem("role", "user");
       }
-      console.log(formData.email);
       e.preventDefault();
-      execute().then(handleLoginSuccess).catch(handleLoginError);
+      execute();
     },
-    [execute, handleLoginSuccess, handleLoginError]
+    [execute]
   );
 
   const handleChange = useCallback((e) => {
@@ -79,12 +68,13 @@ export function useLoginForm(label) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        handleLoginSuccess();
+        localStorage.setItem("loggedin", true);
+        navigate(from, { replace: true });
       }
     });
 
     return () => unsubscribe();
-  }, [auth, handleLoginSuccess]);
+  }, [auth, from]);
 
   return {
     formData,

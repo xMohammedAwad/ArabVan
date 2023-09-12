@@ -4,8 +4,9 @@ import { rentVan } from "../api";
 
 import processPayment from "./processPayment";
 import { useAsync } from "../hooks/useAsync";
+import Swal from "sweetalert2";
 
-export default function CheckoutForm() {
+export default function RentVanForm() {
   const { register, handleSubmit } = useForm();
 
   const location = useLocation();

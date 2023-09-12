@@ -9,12 +9,18 @@ import {
   getFirestore,
   addDoc,
   updateDoc,
-  Timestamp,
 } from "firebase/firestore/lite";
 
 import { app } from "./firebase";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export const db = getFirestore(app);
+let authUid; // Declare authUid outside the event listener
+onAuthStateChanged(getAuth(app), (user) => {
+  if (user) {
+    authUid = user.uid;
+  }
+})
 
 const vansCollectionRef = collection(db, "vans");
 
@@ -37,30 +43,45 @@ export async function getVan(id) {
 }
 
 export async function getHostVans() {
-  const q = query(vansCollectionRef, where("hostId", "==", "123"));
-  const snapshot = await getDocs(q);
-  const vans = snapshot.docs.map((doc) => ({
-    ...doc.data(),
-    id: doc.id,
-  }));
-  return vans;
+  if (authUid) {
+    const q = query(vansCollectionRef, where("hostId", "==", authUid));
+    const snapshot = await getDocs(q).catch((error) => {
+      console.log(error);
+    });
+    const vans = snapshot.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    return vans;
+  }
 }
 
 export async function getHostVan(id) {
-  const q = query(
-    vansCollectionRef,
-    where(documentId(), "==", id),
-    where("hostId", "==", "123")
-  );
-  const snapshot = await getDocs(q);
-  const vans = snapshot.docs.map((doc) => ({
-    ...doc.data(),
-    id: doc.id,
-  }));
-  return vans[0];
+  if (authUid) {
+    const q = query(
+      vansCollectionRef,
+      where(documentId(), "==", id),
+      where("hostId", "==", authUid)
+    );
+    const snapshot = await getDocs(q);
+    const vans = snapshot.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    return vans[0];
+  }
 }
 
-export async function rentVan(vanId, userId, startDate, endDate) {
+export async function addVan(van) {
+  try {
+    const docRef = await addDoc(vansCollectionRef, { ...van });
+    console.log("Van added with ID: ", docRef.id);
+  } catch (error) {
+    console.error("Error adding van: ", error);
+  }
+}
+
+export async function rentVan(vanId, hostId, startDate, endDate) {
   const vanDocRef = doc(db, "vans", vanId);
   const vanSnapshot = await getDoc(vanDocRef);
 
@@ -105,7 +126,7 @@ export async function rentVan(vanId, userId, startDate, endDate) {
 
   await addDoc(rentalsCollectionRef, {
     vanId,
-    userId,
+    hostId,
     startDate,
     endDate,
   });

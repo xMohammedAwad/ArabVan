@@ -1,6 +1,7 @@
-import React from "react";
-import CheckoutForm from "../../components/CheckoutForm";
+import RentVanForm from "../../components/RentVanForm";
+
 import "./Checkout.css";
+
 export default function Checkout() {
-  return <CheckoutForm />;
+  return <RentVanForm />;
 }
