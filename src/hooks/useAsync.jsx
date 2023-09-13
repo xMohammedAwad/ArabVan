@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import Swal from "sweetalert2";
 
-export function useAsync(asyncFunction, immediate = true) {
+export function useAsync(asyncFunction, immediate = true, ...args) {
   const [status, setStatus] = useState("idle");
   const [value, setValue] = useState(null);
   const [error, setError] = useState(null);
@@ -10,30 +9,21 @@ export function useAsync(asyncFunction, immediate = true) {
     setStatus("pending");
     setValue(null);
     setError(null);
-
     try {
-      const response = await asyncFunction();
+      const response = await asyncFunction(...args);
       setValue(response);
       setStatus("success");
-    
     } catch (error) {
       setError(error);
       setStatus("error");
-      Swal.fire({
-        title: "Error!",
-        text: error,
-        icon: "error",
-        showConfirmButton: false,
-        timer: 2500,
-      });
     }
-  }, [asyncFunction]);
+  }, [asyncFunction, ...args]);
 
   useEffect(() => {
     if (immediate) {
       execute();
     }
-  }, [execute, immediate]);
+  }, [immediate]);
 
   return { execute, status, value, error };
 }

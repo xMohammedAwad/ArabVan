@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { Link } from "react-router-dom";
 
-export default function RenderHostdata({ data }) {
+function RenderHostVans({ data }) {
   return (
     <>
       {data.map((van) => (
@@ -17,3 +18,4 @@ export default function RenderHostdata({ data }) {
     </>
   );
 }
+export default memo(RenderHostVans);

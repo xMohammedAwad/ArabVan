@@ -20,7 +20,7 @@ onAuthStateChanged(getAuth(app), (user) => {
   if (user) {
     authUid = user.uid;
   }
-})
+});
 
 const vansCollectionRef = collection(db, "vans");
 
@@ -78,6 +78,17 @@ export async function addVan(van) {
     console.log("Van added with ID: ", docRef.id);
   } catch (error) {
     console.error("Error adding van: ", error);
+  }
+}
+
+export async function addReview(review) {
+  const reviewsCollectionRef = collection(db, "reviews");
+
+  try {
+    const docRef = await addDoc(reviewsCollectionRef, { ...review });
+    console.log("review added with ID: ", docRef.id);
+  } catch (error) {
+    console.error("Error adding review: ", error);
   }
 }
 

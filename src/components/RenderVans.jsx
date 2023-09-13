@@ -1,7 +1,7 @@
-import { useMemo } from "react";
+import { memo, useMemo } from "react";
 import { Link } from "react-router-dom";
 
-export default function RenderVans({ data, typeFilter }) {
+function RenderVans({ data, typeFilter }) {
   const displayedVans = useMemo(() => {
     return typeFilter ? data.filter((van) => van.type === typeFilter) : data;
   }, [data, typeFilter]);
@@ -25,3 +25,5 @@ export default function RenderVans({ data, typeFilter }) {
     </div>
   ));
 }
+
+export default memo(RenderVans);

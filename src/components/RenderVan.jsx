@@ -1,27 +1,20 @@
 import { memo } from "react";
-import { Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Navigation from "./Navigation";
 
 function RenderVan({ data, vanId }) {
+  const links = [
+    { to: ".", end: true, label: "Details" },
+    { to: "reviews", label: "reviews" },
+  ];
+
   return (
-    <>
-      {data && (
-        <div className="van-detail">
-          <img src={data.imageUrl} />
-          <i className={`van-type ${data.type} selected`}>{data.type}</i>
-          <h2>{data.name}</h2>
-          <p className="van-price">
-            <span>${data.price}</span>/day
-          </p>
-          <p>{data.description}</p>
-          <Link
-            to={`/checkout?vanId=${vanId}&hostId=${data.hostId}`}
-            className="link-button"
-          >
-            <button className="link-button">Rent this van</button>
-          </Link>
-        </div>
-      )}
-    </>
+    <section>
+      <nav className="van-detail-nav">
+        <Navigation links={links} />
+      </nav>
+      <Outlet context={{ data, vanId }} />
+    </section>
   );
 }
 

@@ -1,7 +1,8 @@
 import { Outlet } from "react-router-dom";
 import Navigation from "./Navigation";
+import { memo } from "react";
 
-export default function RenderHostVan({ data }) {
+function RenderHostVan({ data }) {
   const links = [
     { to: ".", end: true, label: "Details" },
     { to: "pricing", label: "Pricing" },
@@ -29,3 +30,4 @@ export default function RenderHostVan({ data }) {
     </>
   );
 }
+export default memo(RenderHostVan);

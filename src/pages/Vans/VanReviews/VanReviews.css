@@ -1,0 +1,8 @@
+.review-form-input{
+    display: grid;
+    grid-template-columns: 0.5fr;
+    padding: 10px 0;
+}
+textarea{
+    display: block;
+}

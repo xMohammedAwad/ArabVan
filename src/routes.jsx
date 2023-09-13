@@ -5,6 +5,9 @@ import Layout from "./components/Layout";
 import Checkout from "./pages/Checkout/Checkout";
 import Profile from "./pages/Profile/Profile";
 import { useRole } from "./hooks/useRole";
+
+const VanReviews = lazy(() => import("./pages/Vans/VanReviews/VanReviews"));
+const VanInfo = lazy(() => import("./pages/Vans/VanInfo/VanInfo"));
 const About = lazy(() => import("./pages/About/About"));
 const Home = lazy(() => import("./pages/Home/Home"));
 const HostVanDetail = lazy(() =>
@@ -13,7 +16,7 @@ const HostVanDetail = lazy(() =>
 const HostVans = lazy(() => import("./pages/Host/HostVans/HostVans"));
 const Dashboard = lazy(() => import("./pages/Host/Dashboard/Dashboard"));
 const Income = lazy(() => import("./pages/Host/Income/Income"));
-const Reviews = lazy(() => import("./pages/Host/Reviews/Reviews"));
+const HostReviews = lazy(() => import("./pages/Host/HostReviews/HostReviews"));
 const HostVanPhotos = lazy(() =>
   import("./pages/Host/HostVanPhotos/HostVanPhotos")
 );
@@ -68,6 +71,24 @@ const routes = [
             <VanDetail />
           </Suspense>
         ),
+        children: [
+          {
+            path: "",
+            element: (
+              <Suspense fallback={null}>
+                <VanInfo />
+              </Suspense>
+            ),
+          },
+          {
+            path: "reviews",
+            element: (
+              <Suspense fallback={null}>
+                <VanReviews />
+              </Suspense>
+            ),
+          },
+        ],
       },
       {
         path: "login",
@@ -128,7 +149,7 @@ const routes = [
                 path: "reviews",
                 element: (
                   <Suspense fallback={null}>
-                    <Reviews />
+                    <HostReviews />
                   </Suspense>
                 ),
               },

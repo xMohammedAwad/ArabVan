@@ -1,48 +1,21 @@
-import { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useForm } from "./useForm";
+import { useAuth } from "./useAuth";
+import { useCallback } from "react";
 
-import {
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  signOut,
-  getAuth,
-} from "firebase/auth";
-import { app } from "../firebase";
-import { useAsync } from "./useAsync";
-
-export function useLoginForm(label) {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-  const apiMethod =
-    label === "Login"
-      ? signInWithEmailAndPassword
-      : createUserWithEmailAndPassword;
-
+export function useLoginForm(label, initialFormData) {
   const location = useLocation();
-  let from = "";
-  if (location.pathname.startsWith("/host")) {
-    from = location.pathname;
-  } else {
-    from = location.state?.from || "/host";
-  }
+  let from = location.state?.from || "/host";
+
+  const { formData, handleChange } = useForm(initialFormData);
+  const { execute, status, error } = useAuth(
+    label,
+    formData.email,
+    formData.password,
+    from
+  );
 
   const navigate = useNavigate();
-  const auth = getAuth(app);
-
-  const { execute, status, error } = useAsync(
-    () => apiMethod(auth, formData.email, formData.password),
-    false
-  ); // do not run immediately
-
-  const handleSignOut = useCallback(() => {
-    signOut(auth).then(() => {
-      localStorage.removeItem("loggedin");
-      navigate("/login", { replace: true });
-    });
-  }, [auth, localStorage]);
 
   const handleSubmit = useCallback(
     (e) => {
@@ -52,29 +25,12 @@ export function useLoginForm(label) {
         localStorage.setItem("role", "user");
       }
       e.preventDefault();
-      execute();
+      execute().then((res) => {
+        navigate(from, { replace: true });
+      });
     },
     [execute]
   );
-
-  const handleChange = useCallback((e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  }, []);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        localStorage.setItem("loggedin", true);
-        navigate(from, { replace: true });
-      }
-    });
-
-    return () => unsubscribe();
-  }, [auth, from]);
 
   return {
     formData,
@@ -82,7 +38,6 @@ export function useLoginForm(label) {
     error,
     handleSubmit,
     handleChange,
-    handleSignOut,
     location,
   };
 }

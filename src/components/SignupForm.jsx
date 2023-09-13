@@ -5,7 +5,7 @@ import SubmitButton from "./SubmitButton";
 
 function SignupForm() {
   const { formData, status, error, handleSubmit, handleChange, location } =
-    useLoginForm("Signup");
+    useLoginForm("Signup", { email: "", password: "" });
 
   return (
     <form onSubmit={handleSubmit} className="login-form">

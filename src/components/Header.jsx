@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Navigation from "./Navigation";
-import { useLoginForm } from "../hooks/useLoginForm";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Header() {
   const links = [
@@ -18,7 +18,7 @@ export default function Header() {
     },
   ];
 
-  const { handleSignOut } = useLoginForm();
+  const { handleSignOut } = useAuth();
   return (
     <header>
       <Link className="site-logo" to="/">

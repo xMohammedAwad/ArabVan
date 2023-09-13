@@ -28,6 +28,7 @@
 
 .host-reviews>img {
     margin-bottom: 36px;
+    max-width: 600px;
 }
 
 .host-reviews .review {

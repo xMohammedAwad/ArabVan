@@ -1,3 +1,10 @@
 export default function FormInput(props) {
-  return <input {...props} required />;
+  return (
+    <>
+      <label style={{ paddingBlock: "10px" }} {...props}>
+        {props.name}
+      </label>
+      <input {...props} required />
+    </>
+  );
 }
