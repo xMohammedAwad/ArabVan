@@ -38,11 +38,11 @@ export default function AddVan() {
   }, []);
 
   const formFields = [
-    { type: "text", name: "description", placeholder: "Description" },
     { type: "url", name: "imageUrl", placeholder: "Image URL" },
     { type: "text", name: "name", placeholder: "Name" },
     { type: "number", name: "price", placeholder: "Price" },
     { type: "text", name: "type", placeholder: "Type" },
+    { type: "text", name: "description", placeholder: "Description" },
   ];
 
   const {
@@ -61,16 +61,18 @@ export default function AddVan() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="add-van" onSubmit={handleSubmit}>
       {formFields.map((field) => (
-        <FormInput
-          key={field.name}
-          type={field.type}
-          placeholder={field.placeholder}
-          name={field.name}
-          onChange={handleChange}
-          value={formData[field.name]}
-        />
+        <div className="form-input" key={field.placeholder}>
+          <FormInput
+            key={field.name}
+            type={field.type}
+            placeholder={field.placeholder}
+            name={field.name}
+            onChange={handleChange}
+            value={formData[field.name]}
+          />
+        </div>
       ))}
       <button type="submit" disabled={status === "pending"}>
         Add Van

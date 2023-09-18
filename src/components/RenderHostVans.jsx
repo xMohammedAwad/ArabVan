@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function RenderHostVans({ data }) {
   return (
-    <>
+    <div className="hosts-vans-list">
       {data.map((van) => (
         <Link to={van.id} key={van.id} className="host-van-link-wrapper">
           <div className="host-van-single" key={van.id}>
@@ -15,7 +15,7 @@ function RenderHostVans({ data }) {
           </div>
         </Link>
       ))}
-    </>
+    </div>
   );
 }
 export default memo(RenderHostVans);

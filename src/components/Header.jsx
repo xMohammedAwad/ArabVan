@@ -24,7 +24,7 @@ export default function Header() {
         <Navigation links={links} />
 
         {localStorage.getItem("loggedin") ? (
-          <button onClick={() => handleSignOut()}>logOut</button>
+          <button className="logout" onClick={() => handleSignOut()}>logOut</button>
         ) : (
           <Link to="login">
             <button className="login-btn">logIn</button>

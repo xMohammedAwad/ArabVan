@@ -97,18 +97,36 @@ export async function addReview(vanId, hostId, review) {
   }
 }
 
-export const getVanReviews = (vanId, callback) => {
+export function getVanReviews(vanId, callback) {
   const reviewsRef = collection(db, "reviews");
   const q = query(reviewsRef, where("vanId", "==", vanId));
 
   return onSnapshot(q, (snapshot) => {
+
     const reviews = snapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
     callback(reviews);
   });
-};
+}
+
+export function getHostReviews( callback) {
+  if (authUid) {
+    console.log(authUid);
+    const reviewsRef = collection(db, "reviews");
+    const q = query(reviewsRef, where("hostId", "==", authUid));
+
+    return onSnapshot(q, (snapshot) => {
+      const reviews = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      callback(reviews);
+    });
+  }
+}
 
 export async function rentVan(vanId, hostId, startDate, endDate) {
   const vanDocRef = doc(db, "vans", vanId);

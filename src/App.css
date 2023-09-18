@@ -89,15 +89,17 @@ nav {
     display: flex;
 }
 
-.login-btn {
+.login-btn,
+.logout {
     background-color: transparent;
     border: 0;
     color: #fff;
     font-family: inherit;
     font-weight: 600;
-    font-size: 16px;
-    padding-left: 0;
-    margin-left: -5px;
+    font-size: 15px;
+    padding: 0 15px;
+    cursor: pointer;
+
 }
 
 .header-nav-link {
@@ -148,7 +150,7 @@ footer {
 input:focus {
     outline: none;
     min-width: 100%;
-    
+
 }
 
 .error {

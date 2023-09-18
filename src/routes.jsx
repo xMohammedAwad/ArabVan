@@ -14,7 +14,6 @@ const HostVanDetail = lazy(() =>
 );
 const HostVans = lazy(() => import("./pages/Host/HostVans/HostVans"));
 const Dashboard = lazy(() => import("./pages/Host/Dashboard/Dashboard"));
-const Income = lazy(() => import("./pages/Host/Income/Income"));
 const HostReviews = lazy(() => import("./pages/Host/HostReviews/HostReviews"));
 const HostVanPhotos = lazy(() =>
   import("./pages/Host/HostVanPhotos/HostVanPhotos")
@@ -121,14 +120,6 @@ const routes = [
                 element: (
                   <Suspense fallback={null}>
                     <Dashboard />
-                  </Suspense>
-                ),
-              },
-              {
-                path: "income",
-                element: (
-                  <Suspense fallback={null}>
-                    <Income />
                   </Suspense>
                 ),
               },

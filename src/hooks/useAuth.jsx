@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import { app } from "../firebase";
 import { useCallback, useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 /**
  * A hook for handling authentication.
