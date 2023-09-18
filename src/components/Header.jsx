@@ -9,10 +9,6 @@ export default function Header() {
       label: "Host",
     },
     {
-      to: "/about",
-      label: "About",
-    },
-    {
       to: "/vans",
       label: "Vans",
     },
@@ -22,7 +18,7 @@ export default function Header() {
   return (
     <header>
       <Link className="site-logo" to="/">
-        #VanLife
+        <img className="logo-img" src="/assets/images/logo.png" alt="" />
       </Link>
       <nav>
         <Navigation links={links} />
@@ -31,7 +27,7 @@ export default function Header() {
           <button onClick={() => handleSignOut()}>logOut</button>
         ) : (
           <Link to="login">
-            <button>logIn</button>
+            <button className="login-btn">logIn</button>
           </Link>
         )}
       </nav>

@@ -5,11 +5,10 @@ import Layout from "./components/Layout";
 import Checkout from "./pages/Checkout/Checkout";
 import Profile from "./pages/Profile/Profile";
 import { useRole } from "./hooks/useRole";
+import Home from "./pages/Home/Home";
 
 const VanReviews = lazy(() => import("./pages/Vans/VanReviews/VanReviews"));
 const VanInfo = lazy(() => import("./pages/Vans/VanInfo/VanInfo"));
-const About = lazy(() => import("./pages/About/About"));
-const Home = lazy(() => import("./pages/Home/Home"));
 const HostVanDetail = lazy(() =>
   import("./pages/Host/HostVanDetail/HostVanDetail")
 );
@@ -42,19 +41,7 @@ const routes = [
     children: [
       {
         path: "",
-        element: (
-          <Suspense fallback={null}>
-            <Home />
-          </Suspense>
-        ),
-      },
-      {
-        path: "about",
-        element: (
-          <Suspense fallback={null}>
-            <About />
-          </Suspense>
-        ),
+        element: <Home />,
       },
       {
         path: "vans",

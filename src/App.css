@@ -2,21 +2,12 @@
     box-sizing: border-box;
 }
 
-@-ms-viewport {
-    width: device-width;
-}
-
 html,
 body {
     margin: 0;
-    padding: 0;
-    background-color: #fff7ed;
-    font-family: "Inter", sans-serif;
-}
-
-body {
-    width: 100%;
-    height: 100%;
+    color: var(--color-text);
+    background: linear-gradient(to bottom, hsl(15, 55%, 6%), hsl(0, 0%, 0%));
+    font-family: "tenon", sans-serif;
 }
 
 a {
@@ -44,14 +35,20 @@ header {
     display: flex;
     align-items: center;
     padding-block: 10px;
+    background: linear-gradient(to top, hsl(15, 55%, 6%), hsl(0, 0%, 0%));
+
 }
 
 header .site-logo {
-    color: black;
     margin-right: auto;
-    text-transform: uppercase;
-    font-weight: 900;
-    font-size: 25px;
+    width: 160px;
+    height: auto;
+
+}
+
+.logo-img {
+    max-width: 100%;
+    background: transparent;
 }
 
 header a {
@@ -59,6 +56,23 @@ header a {
     color: #4d4d4d;
     font-weight: 600;
     padding: 5px 20px;
+}
+
+@media (max-width: 550px) {
+    header {
+        padding: 10px;
+    }
+
+    header a {
+        text-decoration: none;
+        color: #4d4d4d;
+        font-weight: 600;
+        padding: 5px 10px;
+    }
+
+    header .site-logo {
+        margin-left: -35px;
+    }
 }
 
 header a:hover {
@@ -75,20 +89,32 @@ nav {
     display: flex;
 }
 
-main {
-    margin-bottom: 84px;
+.login-btn {
+    background-color: transparent;
+    border: 0;
+    color: #fff;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 16px;
+    padding-left: 0;
+    margin-left: -5px;
+}
+
+.header-nav-link {
+    color: var(--color-text);
 }
 
 footer {
-    background-color: #161616;
     color: #aaaaaa;
     height: 74px;
     display: flex;
     flex-shrink: 0;
+    text-align: center;
     justify-content: center;
     align-items: center;
-    margin-top: auto;
+    /* margin-top: auto; */
     font-weight: 500;
+
 }
 
 .link-button {
