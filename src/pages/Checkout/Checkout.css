@@ -13,7 +13,7 @@
 }
 
 .react-calendar__navigation button {
-    color: #e17654;
+    color: var(--color-title);
     min-width: 44px;
     background: none;
     font-size: 16px;
@@ -39,7 +39,7 @@ abbr[title] {
 .react-calendar__tile:enabled:hover,
 .react-calendar__tile:enabled:focus {
     background: #fff7ed;
-    color: #e17654;
+    color: var(--color-title);
     border-radius: 6px;
 }
 
@@ -47,15 +47,15 @@ abbr[title] {
     background: #eba28c33;
     border-radius: 6px;
     font-weight: bold;
-    color: #e17654;
+    color: var(--color-title);
 }
 
 .react-calendar__tile--now:enabled:hover,
 .react-calendar__tile--now:enabled:focus {
-    background: #e1765433;
+    background: var(--color-title)33;
     border-radius: 6px;
     font-weight: bold;
-    color: #e17654;
+    color: var(--color-title);
 }
 
 .react-calendar__tile--hasActive:enabled:hover,
@@ -64,7 +64,7 @@ abbr[title] {
 }
 
 .react-calendar__tile--active {
-    background: #e17654;
+    background: var(--color-title);
     border-radius: 6px;
     font-weight: bold;
     color: white;
@@ -72,7 +72,7 @@ abbr[title] {
 
 .react-calendar__tile--active:enabled:hover,
 .react-calendar__tile--active:enabled:focus {
-    background: #e17654;
+    background: var(--color-title);
     color: white;
 }
 
@@ -81,8 +81,8 @@ abbr[title] {
 }
 
 .react-calendar__tile--range {
-    background: #ffe3c1;
-    color: #e17654;
+    background: #f38475;
+    color: var(--color-title);
     border-radius: 0;
 }
 
@@ -91,7 +91,7 @@ abbr[title] {
     border-bottom-right-radius: 0;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
-    background: #e17654;
+    background: var(--color-title);
     color: white;
 }
 
@@ -100,7 +100,7 @@ abbr[title] {
     border-bottom-left-radius: 0;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
-    background: #e17654;
+    background: var(--color-title);
     color: white;
 }
 
@@ -110,52 +110,73 @@ abbr[title] {
 
 .checkout-form {
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0 20px;
     box-sizing: border-box;
 }
 
 .checkout-form h1 {
-    color: #e17654;
-    margin-bottom: 30px;
+    color: var(--color-title);
 }
 
 .checkout-form form {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "date card"
+        "date card"
+        "date card"
+        "date card";
+    gap: 20px 10px;
+}
+
+.calendar-container {
+    max-width: 300px;
+    grid-area: date;
 }
 
 .checkout-form label {
-    color: #e17654;
-    margin-bottom: 5px;
+    color: var(--color-title);
+    margin-bottom: 10px;
     font-weight: bold;
+    display: block;
 }
 
 .checkout-form input,
 input:focus {
-    margin-bottom: 20px;
     padding: 10px;
-    border: 1px solid #e17654;
+    border: 1px solid var(--color-title);
     border-radius: 5px;
+    width: 100%;
+    max-width: 300px;
 }
 
-.calendar-container {
-    margin-bottom: 20px;
-}
-
-.checkout-button {
+.checkout-submit {
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #e17654;
+    background-color: var(--color-title);
     color: white;
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
+    max-width: 300px;
+
 }
 
 .checkout-form button:disabled {
-    background-color: #ffe3c1;
+    background-color: #f17c6c;
     cursor: not-allowed;
+}
+
+@media (max-width:530px) {
+    .checkout-form form {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "date";
+        gap: 20px 10px;
+    }
+
 }

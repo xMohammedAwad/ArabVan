@@ -76,3 +76,31 @@ h2 .van-type {
     font-size: 1.125rem;
     width: 80%;
 }
+
+.van-type {
+    height: 34px;
+    padding: 6px 26px;
+    font-style: normal;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--color-title);
+    color: var(--color-text);
+    transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.van-type.simple:hover,
+.van-type.simple.selected {
+    background-color: #e17654;
+}
+
+.van-type.rugged:hover,
+.van-type.rugged.selected {
+    background-color: #115e59;
+}
+
+.van-type.luxury:hover,
+.van-type.luxury.selected {
+    background-color: #161616;
+}

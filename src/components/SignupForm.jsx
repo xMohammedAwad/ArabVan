@@ -12,12 +12,14 @@ function SignupForm() {
       <FormInput
         type="email"
         name="email"
+        placeholder="Email"
         value={formData.email}
         onChange={handleChange}
       />
       <FormInput
         type="password"
         name="password"
+        placeholder="Password"
         value={formData.password}
         onChange={handleChange}
       />

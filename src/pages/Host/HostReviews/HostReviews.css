@@ -1,6 +1,6 @@
 .host-reviews {
     padding-inline: 26px;
-    color: #161616;
+    color: #fff
 }
 
 .host-reviews .top-text {
@@ -18,7 +18,7 @@
 
 .host-reviews .top-text>p {
     margin: 0;
-    color: #4d4d4d;
+    color: #da4949;
 }
 
 .host-reviews .top-text>p span {
@@ -40,22 +40,22 @@
 }
 
 .host-reviews .review .name {
-    color: #161616;
+    color: #ee5151;
     margin-right: 10px;
     font-weight: 600;
 }
 
 .host-reviews .review .date {
-    color: #8c8c8c;
+    color: #eeb2b2;
 }
 
 .host-reviews hr {
-    background-color: #c7c7c7;
+    background-color: #c0b9b9;
     height: 1px;
     border: 0;
 }
 
 .host-reviews .review-star {
-    color: #ff8c38;
+    color: var(--color-title);
     margin-right: 5px;
 }

@@ -1,5 +1,4 @@
 .host-van-detail-layout-container {
-    background-color: white;
     padding: 24px;
     margin: 30px 26px;
 }
@@ -34,21 +33,21 @@
 
 .host-van-detail-nav a {
     text-decoration: none;
-    color: #4d4d4d;
+    color: #ee8787;
     font-weight: 500;
     padding: 5px 20px;
 }
 
 .host-van-detail-nav a:first-of-type {
     text-decoration: none;
-    color: #4d4d4d;
+    color: #ee8787;
     font-weight: 500;
     padding: 5px 15px;
     margin-left: -15px;
 }
 
 .host-van-detail-nav a:hover {
-    color: #161616;
+    color: #ee4b4b;
     text-decoration: underline;
     font-weight: 700;
 }
@@ -70,7 +69,7 @@
 
 .host-van-price>span {
     font-size: 16px;
-    color: #4d4d4d;
+    color: #ee8787;
 }
 
 .host-van-detail-image {

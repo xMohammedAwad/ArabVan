@@ -3,7 +3,7 @@ import { useAsync } from "../hooks/useAsync";
 import FormInput from "./FormInput";
 import Swal from "sweetalert2";
 import { useCallback, useState, useEffect } from "react";
-export default function AddVan() {
+export default function AddVan({ vanId, hostId }) {
   const [formData, setFormData] = useState({
     rating: "",
     name: "",
@@ -29,17 +29,23 @@ export default function AddVan() {
     status,
     error,
   } = useAsync(
-    () => addReview(formData),
+    () => addReview(vanId, hostId, formData),
     false // do not immediately execute
   );
 
   function handleSubmit(e) {
+    setFormData({
+      rating: "",
+      name: "",
+      date: new Date().toLocaleDateString(),
+      review: "",
+    });
     e.preventDefault();
     addReviewAsync();
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="review-form" onSubmit={handleSubmit}>
       {formFields.map((field, i) => (
         <FormInput
           key={field.name}
@@ -58,7 +64,8 @@ export default function AddVan() {
         name="review"
         id="review"
         cols="30"
-        rows="10"
+        rows="5"
+        placeholder="Write your Review"
         value={formData.review}
         onChange={handleChange}
       ></textarea>

@@ -8,7 +8,6 @@ function RenderHostVan({ data }) {
     { to: "pricing", label: "Pricing" },
     { to: "photos", label: "Photos" },
   ];
-
   return (
     <>
       {data && (

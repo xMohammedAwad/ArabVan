@@ -11,6 +11,7 @@ export default function Navigation({ links }) {
       className="header-nav-link"
       key={i}
       to={link.to}
+      state={link.state}
       end={link.end}
       style={({ isActive }) => (isActive ? activeStyles : null)}
     >

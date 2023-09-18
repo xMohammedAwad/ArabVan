@@ -2,7 +2,6 @@ import { Link, useOutletContext } from "react-router-dom";
 import "./VanInfo.css";
 export default function VanInfo() {
   const { data, vanId } = useOutletContext();
-
   return (
     <article>
       {data && (
@@ -11,7 +10,6 @@ export default function VanInfo() {
           <div className="van-info">
             <h2>
               <i className={`van-type ${data.type} selected`}>{data.type}</i>
-
               {data.name}
             </h2>
             <p className="van-price">

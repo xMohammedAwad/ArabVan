@@ -20,8 +20,8 @@ function RenderVans({ data, typeFilter }) {
             <span>/day</span>
           </p>
         </div>
-        <i className={`van-type ${van.type} selected`}>{van.type}</i>
       </Link>
+      <span className={`vans-type van-type ${van.type} selected`}>{van.type}</span>
     </div>
   ));
 }

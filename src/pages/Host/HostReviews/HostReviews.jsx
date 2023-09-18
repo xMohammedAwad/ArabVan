@@ -1,5 +1,6 @@
 import { BsFillStarFill } from "react-icons/bs";
 import "./HostReviews.css";
+import { memo } from "react";
 
 function HostReviews() {
   const reviewsData = [

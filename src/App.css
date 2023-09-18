@@ -132,7 +132,7 @@ footer {
 
 .back-button {
     display: block;
-    color: black;
+    color: #fff;
     text-decoration: none;
     margin-left: 26px;
 }
@@ -143,6 +143,12 @@ footer {
 
 .link-button:hover {
     transform: translate(1px, 1px);
+}
+
+input:focus {
+    outline: none;
+    min-width: 100%;
+    
 }
 
 .error {
