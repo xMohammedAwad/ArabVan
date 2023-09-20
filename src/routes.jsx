@@ -2,11 +2,11 @@ import React, { lazy, Suspense } from "react";
 import AuthRequired from "./components/AuthRequired";
 import HostLayout from "./components/HostLayout";
 import Layout from "./components/Layout";
-import Checkout from "./pages/Checkout/Checkout";
-import Profile from "./pages/Profile/Profile";
 import { useRole } from "./hooks/useRole";
-import Home from "./pages/Home/Home";
 
+const Checkout = lazy(() => import("./pages/Checkout/Checkout"));
+const Profile = lazy(() => import("./pages/Profile/Profile"));
+const Home = lazy(() => import("./pages/Home/Home"));
 const VanReviews = lazy(() => import("./pages/Vans/VanReviews/VanReviews"));
 const VanInfo = lazy(() => import("./pages/Vans/VanInfo/VanInfo"));
 const HostVanDetail = lazy(() =>
@@ -40,7 +40,11 @@ const routes = [
     children: [
       {
         path: "",
-        element: <Home />,
+        element: (
+          <Suspense fallback={null}>
+            <Home />
+          </Suspense>
+        ),
       },
       {
         path: "vans",
@@ -99,13 +103,21 @@ const routes = [
         children: [
           {
             path: "",
-            element: <Checkout />,
+            element: (
+              <Suspense fallback={null}>
+                <Checkout />
+              </Suspense>
+            ),
           },
         ],
       },
       {
         path: "profile",
-        element: <Profile />,
+        element: (
+          <Suspense fallback={null}>
+            <Profile />
+          </Suspense>
+        ),
       },
       {
         path: "/host",

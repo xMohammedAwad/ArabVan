@@ -1,9 +1,5 @@
 import { initializeApp } from "firebase/app";
 
-import {
-  getFirestore,
-} from "firebase/firestore/lite";
-
 const firebaseConfig = {
   apiKey: "AIzaSyDRNORl1pZl4yltgWjVG2DeXYFTda1eGmY",
   authDomain: "vanlife-6e5e4.firebaseapp.com",

@@ -2,6 +2,17 @@
     box-sizing: border-box;
 }
 
+:root {
+    font-size: 16px;
+    --color-text: #fff;
+    --color-bg: #000;
+    --color-bg-alt: hsl(15deg 55% 6%);
+    --color-link: rgba(255, 255, 255, 0.5);
+    --color-link-hover: #fff;
+    --color-title: #f32c1e;
+}
+
+
 html,
 body {
     margin: 0;

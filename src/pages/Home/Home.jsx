@@ -174,7 +174,7 @@ export default function Home() {
             )}
           </h1>
           <span className="intro__info">
-            Scroll slowly and <span>enjoy</span> the animations
+            Scroll slowly and <span>enjoy</span> with Animations
           </span>
         </div>
 
@@ -223,7 +223,7 @@ export default function Home() {
                 </mask>
               </defs>
               <image
-                xlinkHref="/assets/img/3.jpg"
+                xlinkHref="/assets/images/3.jpg"
                 width="1000"
                 height="560"
                 mask="url(#pathMask)"
@@ -245,8 +245,73 @@ export default function Home() {
         <div className="content-wrap">
           <div className="content">
             <div className="title-wrap">
-              <span className="title title--up">Memories </span>
-              <span className="title title--down">Abound</span>
+              <span className="title title--up">Fire</span>
+              <span className="title title--down">Storm</span>
+            </div>
+          </div>
+          <div className="content content--layout content--layout-6">
+            <svg
+              className="content__img content__img--6"
+              width="1000"
+              height="1000"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              viewBox="0 0 1000 1000"
+            >
+              <defs>
+                <filter id="displacementFilter6">
+                  <feTurbulence
+                    type="fractalNoise"
+                    baseFrequency="0.01"
+                    numOctaves="3"
+                    result="noise"
+                  />
+                  <feDisplacementMap
+                    in="SourceGraphic"
+                    in2="noise"
+                    result="displacement"
+                    scale="150"
+                    xChannelSelector="R"
+                    yChannelSelector="G"
+                  />
+                  <feGaussianBlur in="displacement" stdDeviation="10" />
+                </filter>
+                <mask id="circleMask6">
+                  <circle
+                    cx="50%"
+                    cy="50%"
+                    r="0"
+                    data-value-final="720"
+                    fill="white"
+                    className="mask"
+                    style={{ filter: "url(#displacementFilter6)" }}
+                  />
+                </mask>
+              </defs>
+              <image
+                xlinkHref="/assets/images/5.jpg"
+                width="1000"
+                height="1000"
+                mask="url(#circleMask6)"
+              />
+            </svg>
+            <Link className="home-cta" to={"/vans"}>
+              Find Ride
+            </Link>
+
+            <p className="content__text">
+              Connect with like-minded travelers and bring people together
+              through shared van adventures.
+            </p>
+          </div>
+        </div>
+
+        <div className="content-wrap">
+          <div className="content">
+            <div className="title-wrap">
+              <span className="title title--up">Best </span>
+              <span className="title title--down">Vans</span>
             </div>
           </div>
           <div className="content content--layout content--layout-7">
@@ -288,7 +353,7 @@ export default function Home() {
                 </mask>
               </defs>
               <image
-                xlinkHref="/assets/img/7.jpg"
+                xlinkHref="/assets/images/7.jpg"
                 width="1400"
                 height="560"
                 mask="url(#circleMask7)"
@@ -351,7 +416,7 @@ export default function Home() {
                 </mask>
               </defs>
               <image
-                xlinkHref="/assets/img/1.jpg"
+                xlinkHref="/assets/images/1.jpg"
                 width="896"
                 height="1344"
                 mask="url(#circleMask)"
@@ -421,7 +486,7 @@ export default function Home() {
                 </mask>
               </defs>
               <image
-                xlinkHref="/assets/img/4.jpg"
+                xlinkHref="/assets/images/4.jpg"
                 width="1000"
                 height="450"
                 mask="url(#circleMask2)"
@@ -485,7 +550,7 @@ export default function Home() {
                 </mask>
               </defs>
               <image
-                xlinkHref="/assets/img/2.jpg"
+                xlinkHref="/assets/images/2.jpg"
                 width="1400"
                 height="560"
                 mask="url(#circleMask4)"
@@ -547,7 +612,7 @@ export default function Home() {
                 </mask>
               </defs>
               <image
-                xlinkHref="/assets/img/5.jpg"
+                xlinkHref="/assets/images/5.jpg"
                 width="680"
                 height="920"
                 mask="url(#circleMask5)"
@@ -611,7 +676,7 @@ export default function Home() {
                 </mask>
               </defs>
               <image
-                xlinkHref="/assets/img/6.jpg"
+                xlinkHref="/assets/images/6.jpg"
                 width="1000"
                 height="1000"
                 mask="url(#circleMask6)"

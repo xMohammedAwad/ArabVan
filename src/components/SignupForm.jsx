@@ -23,7 +23,8 @@ function SignupForm() {
         onChange={handleChange}
       />
       <FormError error={error} location={location} />
-      <button disabled={loading}>{loading ? `wait...` : Signup}</button>
+      <button disabled={loading}>{loading ? `wait...` : "Signup"}</button>
+      
     </form>
   );
 }
