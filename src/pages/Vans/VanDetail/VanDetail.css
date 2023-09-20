@@ -3,7 +3,7 @@
 }
 
 .van-detail-container .back-button {
-    color: black;
+    color: rgb(243, 77, 77);
     text-decoration: none;
 }
 
@@ -17,7 +17,7 @@
     display: grid;
     grid-template-columns: 1.3fr 2fr 0.3fr;
     gap: 30px 20px;
-    color: #161616;
+    color: #f3e1e1;
     padding-top: 20px;
     align-items: center;
 
@@ -60,11 +60,4 @@
 .van-detail .van-price span {
     font-weight: 700;
     font-size: 1.5rem;
-}
-
-.van-detail .link-button {
-    background-color: #ff8c38;
-    color: white;
-    font-size: 1.125rem;
-    width: 100%;
 }

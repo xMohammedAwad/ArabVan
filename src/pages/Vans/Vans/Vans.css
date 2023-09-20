@@ -4,8 +4,9 @@
 }
 
 .van-list-filter-buttons {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 33%;
 }
 
 .van-list-filter-buttons>a {
@@ -14,14 +15,22 @@
 
 .van-list {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(min(10rem, 100%), 1fr));
     justify-items: center;
     gap: 34px;
     margin-top: 57px;
 }
 
+@media (min-width: 768px) {
+    .van-list {
+        grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+    }
+}
+.van-tile{
+    position: relative;
+}
 .van-tile a {
-    color: #161616;
+    color: var(--color-text);
     text-decoration: none;
 }
 
@@ -42,8 +51,8 @@
     font-weight: 500;
     border: none;
     border-radius: 5px;
-    background-color: #ffead0;
-    color: #4d4d4d;
+    background-color: var(--color-title);
+    color: var(--color-text);
     transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -84,10 +93,14 @@
     border-radius: 5px;
     text-decoration: underline;
     background-color: transparent;
-    color: #4d4d4d;
+    color: var(--color-text);
 }
 
 i[class*="van-type-"] {
     padding: 7px 14px;
 }
-
+.vans-type{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}

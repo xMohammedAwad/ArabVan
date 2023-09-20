@@ -2,20 +2,18 @@ import React, { lazy, Suspense } from "react";
 import AuthRequired from "./components/AuthRequired";
 import HostLayout from "./components/HostLayout";
 import Layout from "./components/Layout";
-import Checkout from "./pages/Checkout/Checkout";
-import Profile from "./pages/Profile/Profile";
 import { useRole } from "./hooks/useRole";
 
+const Checkout = lazy(() => import("./pages/Checkout/Checkout"));
+const Profile = lazy(() => import("./pages/Profile/Profile"));
+const Home = lazy(() => import("./pages/Home/Home"));
 const VanReviews = lazy(() => import("./pages/Vans/VanReviews/VanReviews"));
 const VanInfo = lazy(() => import("./pages/Vans/VanInfo/VanInfo"));
-const About = lazy(() => import("./pages/About/About"));
-const Home = lazy(() => import("./pages/Home/Home"));
 const HostVanDetail = lazy(() =>
   import("./pages/Host/HostVanDetail/HostVanDetail")
 );
 const HostVans = lazy(() => import("./pages/Host/HostVans/HostVans"));
 const Dashboard = lazy(() => import("./pages/Host/Dashboard/Dashboard"));
-const Income = lazy(() => import("./pages/Host/Income/Income"));
 const HostReviews = lazy(() => import("./pages/Host/HostReviews/HostReviews"));
 const HostVanPhotos = lazy(() =>
   import("./pages/Host/HostVanPhotos/HostVanPhotos")
@@ -45,14 +43,6 @@ const routes = [
         element: (
           <Suspense fallback={null}>
             <Home />
-          </Suspense>
-        ),
-      },
-      {
-        path: "about",
-        element: (
-          <Suspense fallback={null}>
-            <About />
           </Suspense>
         ),
       },
@@ -113,13 +103,21 @@ const routes = [
         children: [
           {
             path: "",
-            element: <Checkout />,
+            element: (
+              <Suspense fallback={null}>
+                <Checkout />
+              </Suspense>
+            ),
           },
         ],
       },
       {
         path: "profile",
-        element: <Profile />,
+        element: (
+          <Suspense fallback={null}>
+            <Profile />
+          </Suspense>
+        ),
       },
       {
         path: "/host",
@@ -134,14 +132,6 @@ const routes = [
                 element: (
                   <Suspense fallback={null}>
                     <Dashboard />
-                  </Suspense>
-                ),
-              },
-              {
-                path: "income",
-                element: (
-                  <Suspense fallback={null}>
-                    <Income />
                   </Suspense>
                 ),
               },

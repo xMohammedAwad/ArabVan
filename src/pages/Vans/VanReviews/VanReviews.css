@@ -1,8 +1,67 @@
-.review-form-input{
-    display: grid;
-    grid-template-columns: 0.5fr;
-    padding: 10px 0;
+.review-star,
+.review .date {
+    color: var(--color-title);
+    margin-right: 5px;
 }
-textarea{
-    display: block;
+
+.reviews-count {
+    padding-left: 10px;
+}
+
+ .info {
+    display: flex;
+} 
+.info .name{
+    color: var(--color-title);
+    padding-right: 20px;
+}
+
+/*  */
+.review-page {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 6rem;
+
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 10px;
+}
+
+.review-form label {
+    font-size: 1.2rem;
+}
+
+.review-form input,
+input:focus {
+    padding: 10px;
+}
+
+.review-form textarea {
+    height: 100px;
+    resize: none;
+}
+
+.review-form button {
+    padding: 15px 10px;
+    background-color: var(--color-title);
+    color: white;
+    border: 0;
+    margin-top: 10px;
+}
+.review-link{
+    color: var(--color-title);
+    padding-left: 10px;
+    text-decoration: underline;
+    font-size: 1.3rem;
+}
+
+
+@media (max-width: 668px) {
+    .review-page {
+        grid-template-columns: 1fr;
+    }
 }

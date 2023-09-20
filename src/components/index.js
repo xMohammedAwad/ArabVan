@@ -1,4 +1,4 @@
-import { getHostVans, getVan, getVans } from "../api";
+import { getHostVans, getVan, getVanReviews, getVans } from "../api";
 import withFetchData from "./withFetchData";
 import RenderHostVan from "./RenderHostVan";
 import RenderHostVans from "./RenderHostVans";

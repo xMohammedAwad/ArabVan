@@ -38,16 +38,16 @@ export default function AddVan() {
   }, []);
 
   const formFields = [
-    { type: "text", name: "description", placeholder: "Description" },
     { type: "url", name: "imageUrl", placeholder: "Image URL" },
     { type: "text", name: "name", placeholder: "Name" },
     { type: "number", name: "price", placeholder: "Price" },
     { type: "text", name: "type", placeholder: "Type" },
+    { type: "text", name: "description", placeholder: "Description" },
   ];
 
   const {
     execute: addVanAsync,
-    status,
+    loading,
     error,
   } = useAsync(
     () => addVan(formData),
@@ -59,24 +59,27 @@ export default function AddVan() {
     addVanAsync();
     console.log(formData.hostId);
   }
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="add-van" onSubmit={handleSubmit}>
       {formFields.map((field) => (
-        <FormInput
-          key={field.name}
-          type={field.type}
-          placeholder={field.placeholder}
-          name={field.name}
-          onChange={handleChange}
-          value={formData[field.name]}
-        />
+        <div className="form-input" key={field.placeholder}>
+          <FormInput
+            key={field.name}
+            type={field.type}
+            placeholder={field.placeholder}
+            name={field.name}
+            onChange={handleChange}
+            value={formData[field.name]}
+          />
+        </div>
       ))}
-      <button type="submit" disabled={status === "pending"}>
+      <button type="submit" disabled={loading}>
         Add Van
       </button>
-      {status === "pending" && <h4>Loading...</h4>}
-
       {error && <h4 className="error">Error: {error.message}</h4>}
     </form>
   );

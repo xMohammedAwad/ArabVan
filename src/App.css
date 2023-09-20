@@ -2,12 +2,23 @@
     box-sizing: border-box;
 }
 
+:root {
+    font-size: 16px;
+    --color-text: #fff;
+    --color-bg: #000;
+    --color-bg-alt: hsl(15deg 55% 6%);
+    --color-link: rgba(255, 255, 255, 0.5);
+    --color-link-hover: #fff;
+    --color-title: #f32c1e;
+}
+
+
 html,
 body {
     margin: 0;
-    padding: 0;
-    background-color: #fff7ed;
-    font-family: "Inter", sans-serif;
+    color: var(--color-text);
+    background: linear-gradient(to bottom, hsl(15, 55%, 6%), hsl(0, 0%, 0%));
+    font-family: "tenon", sans-serif;
 }
 
 a {
@@ -35,14 +46,20 @@ header {
     display: flex;
     align-items: center;
     padding-block: 10px;
+    background: linear-gradient(to top, hsl(15, 55%, 6%), hsl(0, 0%, 0%));
+
 }
 
 header .site-logo {
-    color: black;
     margin-right: auto;
-    text-transform: uppercase;
-    font-weight: 900;
-    font-size: 25px;
+    width: 160px;
+    height: auto;
+
+}
+
+.logo-img {
+    max-width: 100%;
+    background: transparent;
 }
 
 header a {
@@ -50,6 +67,23 @@ header a {
     color: #4d4d4d;
     font-weight: 600;
     padding: 5px 20px;
+}
+
+@media (max-width: 550px) {
+    header {
+        padding: 10px;
+    }
+
+    header a {
+        text-decoration: none;
+        color: #4d4d4d;
+        font-weight: 600;
+        padding: 5px 10px;
+    }
+
+    header .site-logo {
+        margin-left: -35px;
+    }
 }
 
 header a:hover {
@@ -66,20 +100,34 @@ nav {
     display: flex;
 }
 
-main {
-    margin-bottom: 84px;
+.login-btn,
+.logout {
+    background-color: transparent;
+    border: 0;
+    color: #fff;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 0 15px;
+    cursor: pointer;
+
+}
+
+.header-nav-link {
+    color: var(--color-text);
 }
 
 footer {
-    background-color: #161616;
     color: #aaaaaa;
     height: 74px;
     display: flex;
     flex-shrink: 0;
+    text-align: center;
     justify-content: center;
     align-items: center;
-    margin-top: auto;
+    /* margin-top: auto; */
     font-weight: 500;
+
 }
 
 .link-button {
@@ -97,7 +145,7 @@ footer {
 
 .back-button {
     display: block;
-    color: black;
+    color: #fff;
     text-decoration: none;
     margin-left: 26px;
 }
@@ -108,6 +156,12 @@ footer {
 
 .link-button:hover {
     transform: translate(1px, 1px);
+}
+
+input:focus {
+    outline: none;
+    min-width: 100%;
+
 }
 
 .error {

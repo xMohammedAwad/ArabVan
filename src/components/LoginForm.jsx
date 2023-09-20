@@ -1,10 +1,9 @@
 import { useLoginForm } from "../hooks/useLoginForm";
 import FormError from "./FormError";
 import FormInput from "./FormInput";
-import SubmitButton from "./SubmitButton";
 
 function LoginForm() {
-  const { formData, status, error, handleSubmit, handleChange, location } =
+  const { formData, loading, error, handleSubmit, handleChange, location } =
     useLoginForm("Login", { email: "", password: "" });
 
   return (
@@ -12,19 +11,20 @@ function LoginForm() {
       <FormInput
         type="email"
         name="email"
+        placeholder="Email"
         value={formData.email}
         onChange={handleChange}
       />
       <FormInput
         type="password"
         name="password"
-        autoComplete="current-password"
+        placeholder="Password"
         value={formData.password}
         onChange={handleChange}
       />
       <FormError error={error} location={location} />
 
-      <SubmitButton status={status} label={"Log in"} />
+      <button disabled={loading}>{loading ? `wait...` : `Login`}</button>
     </form>
   );
 }

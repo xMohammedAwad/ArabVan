@@ -1,39 +1,43 @@
+.dash-container {
+    background: linear-gradient(0deg, var(--color-title), var(--color-bg-alt));
+
+}
 
 .host-dashboard-earnings {
-    background-color: #ffead0;
     padding: 37px 26px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.host-dashboard-earnings>.info>h1 {
+.host-dashboard-earnings>.dash-info>h1 {
     font-size: 36px;
-    color: #161616;
+    color: #fff;
     margin: 0;
 }
 
-.host-dashboard-earnings>.info>p {
-    color: #4d4d4d;
+.host-dashboard-earnings>.dash-info>p {
+    color: #f0cfcf;
 }
 
-.host-dashboard-earnings>.info>p>span {
+.host-dashboard-earnings>.dash-info>p>span {
     text-decoration: underline;
     font-weight: bold;
 }
 
-.host-dashboard-earnings>.info>h2 {
+.host-dashboard-earnings>.dash-info>h2 {
     margin: 0;
     font-size: 38px;
-    color: #161616;
+    color: #fff;
     font-weight: 900;
 }
 
 .host-dashboard-reviews {
-    background-color: #ffddb2;
     padding: 25px 26px;
     display: flex;
     align-items: center;
+    background: linear-gradient(0deg, var(--color-bg-alt), transparent);
+
 }
 
 .host-dashboard-reviews>h2 {
@@ -41,21 +45,28 @@
 }
 
 .host-dashboard-reviews .star {
-    color: #ff8c38;
+    color: #da4949;
     margin-left: 15px;
     font-size: 25px;
+    margin-bottom: 10px;
 }
 
 .host-dashboard-reviews p {
     margin-left: 5px;
     font-size: 20px;
-    color: #4d4d4d;
+    color: #ecbaba;
     margin-right: auto;
+}
+.star-container{
+    display: flex;
+    margin-right: auto;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .host-dashboard-reviews p>span {
     font-weight: bold;
-    color: #161616;
+    color: #fff;
 }
 
 .host-dashboard-vans {
@@ -66,8 +77,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-right: 20px;
 }
 
-.host-dashboard-vans .host-vans-list {
+.host-dashboard-vans {
     padding-inline: 0;
+
 }

@@ -1,21 +1,22 @@
 import { useCallback, useEffect, useState } from "react";
 
 export function useAsync(asyncFunction, immediate = true, ...args) {
-  const [status, setStatus] = useState("idle");
   const [value, setValue] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const execute = useCallback(async () => {
-    setStatus("pending");
     setValue(null);
     setError(null);
+    setLoading(true);
+
     try {
       const response = await asyncFunction(...args);
       setValue(response);
-      setStatus("success");
+      setLoading(false);
     } catch (error) {
       setError(error);
-      setStatus("error");
+      setLoading(false);
     }
   }, [asyncFunction, ...args]);
 
@@ -25,5 +26,5 @@ export function useAsync(asyncFunction, immediate = true, ...args) {
     }
   }, [immediate]);
 
-  return { execute, status, value, error };
+  return { execute, loading, value, error };
 }
