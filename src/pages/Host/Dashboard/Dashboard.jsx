@@ -9,7 +9,7 @@ export default function Dashboard() {
     <>
       <div className="dash-container">
         <section className="host-dashboard-earnings">
-          <div className="info">
+          <div className="dash-info">
             <h1>Welcome!</h1>
             <p>
               Income last <span>30 days</span>

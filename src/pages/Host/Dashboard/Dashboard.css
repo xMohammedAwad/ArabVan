@@ -10,22 +10,22 @@
     align-items: center;
 }
 
-.host-dashboard-earnings>.info>h1 {
+.host-dashboard-earnings>.dash-info>h1 {
     font-size: 36px;
     color: #fff;
     margin: 0;
 }
 
-.host-dashboard-earnings>.info>p {
+.host-dashboard-earnings>.dash-info>p {
     color: #f0cfcf;
 }
 
-.host-dashboard-earnings>.info>p>span {
+.host-dashboard-earnings>.dash-info>p>span {
     text-decoration: underline;
     font-weight: bold;
 }
 
-.host-dashboard-earnings>.info>h2 {
+.host-dashboard-earnings>.dash-info>h2 {
     margin: 0;
     font-size: 38px;
     color: #fff;

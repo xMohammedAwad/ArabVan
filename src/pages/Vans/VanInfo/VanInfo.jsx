@@ -15,7 +15,7 @@ export default function VanInfo() {
             <p className="van-price">
               <span>${data.price}</span>/day
             </p>
-            <p>{data.description}</p>
+            <p className="van-description">{data.description}</p>
             <Link
               to={`/checkout?vanId=${vanId}&hostId=${data.hostId}`}
               className="link-button"

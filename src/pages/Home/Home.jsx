@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger, Flip } from "gsap/all";
 import Lenis from "@studio-freight/lenis";
 import "./Home.css";
 import { Link } from "react-router-dom";
+import { ThreeCircles } from "react-loader-spinner";
 gsap.registerPlugin(ScrollTrigger, Flip);
 class Item {
   // Initialize DOM and style related properties
@@ -101,8 +102,10 @@ class Item {
 
 export default function Home() {
   const ref = useRef(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(false);
     const script = document.createElement("script");
     script.src =
       "https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js";
@@ -144,83 +147,35 @@ export default function Home() {
       });
     });
   };
-
   // Render the HTML here
   return (
     <div ref={ref}>
       <main className="home-main">
         <div className="intro">
           <h1 className="intro__title">
-            <span className="intro__title-pre">
-              <span>Adventures</span>
-              Begin Here
-            </span>
+            {loading ? (
+              <ThreeCircles
+                height="100"
+                width="100"
+                color="var(--color-title)"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+                ariaLabel="three-circles-rotating"
+                outerCircleColor=""
+                innerCircleColor=""
+                middleCircleColor=""
+              />
+            ) : (
+              <span className="intro__title-pre">
+                <span>Adventures</span>
+                Begin Here
+              </span>
+            )}
           </h1>
           <span className="intro__info">
             Scroll slowly and <span>enjoy</span> the animations
           </span>
-        </div>
-        <div className="content-wrap">
-          <div className="content">
-            <div className="title-wrap">
-              <span className="title title--up">Memories</span>
-              <span className="title title--down">Abound</span>
-            </div>
-          </div>
-          <div className="content content--layout content--layout-1">
-            <svg
-              className="content__img content__img--1"
-              width="896"
-              height="1344"
-              version="1.1"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-              viewBox="0 0 896 1344"
-            >
-              <defs>
-                <filter id="displacementFilter">
-                  <feTurbulence
-                    type="fractalNoise"
-                    baseFrequency="0.03"
-                    numOctaves="3"
-                    result="noise"
-                  />
-                  <feDisplacementMap
-                    in="SourceGraphic"
-                    in2="noise"
-                    scale="50"
-                    xChannelSelector="R"
-                    yChannelSelector="G"
-                  />
-                </filter>
-                <mask id="circleMask">
-                  <circle
-                    cx="50%"
-                    cy="50%"
-                    r="0"
-                    data-value-final="820"
-                    fill="white"
-                    className="mask"
-                    style={{ filter: "url(#displacementFilter)" }}
-                  />
-                </mask>
-              </defs>
-              <image
-                xlinkHref="/assets/img/1.jpg"
-                width="896"
-                height="1344"
-                mask="url(#circleMask)"
-              />
-            </svg>
-            <Link className="home-cta" to={"/vans"}>
-              View All Vans
-            </Link>
-
-            <p className="content__text">
-              Make each voyage unforgettable with 360-degree views and
-              photogenic backdrops.
-            </p>
-          </div>
         </div>
 
         <div className="content-wrap">
@@ -275,7 +230,7 @@ export default function Home() {
               />
             </svg>
             <Link className="home-cta" to={"/vans"}>
-              View All Vans
+              Find Ride
             </Link>
 
             <p className="content__text">
@@ -283,6 +238,132 @@ export default function Home() {
               amenities to ensure your comfort and convenience on the road.
               Enjoy premium seating, advanced technology, and high-end finishes
               throughout your travels.
+            </p>
+          </div>
+        </div>
+
+        <div className="content-wrap">
+          <div className="content">
+            <div className="title-wrap">
+              <span className="title title--up">Memories </span>
+              <span className="title title--down">Abound</span>
+            </div>
+          </div>
+          <div className="content content--layout content--layout-7">
+            <svg
+              className="content__img content__img--7"
+              width="1400"
+              height="560"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              viewBox="0 0 1400 560"
+            >
+              <defs>
+                <filter id="displacementFilter7">
+                  <feTurbulence
+                    type="fractalNoise"
+                    baseFrequency="0.03"
+                    numOctaves="1"
+                    result="noise"
+                  />
+                  <feDisplacementMap
+                    in="SourceGraphic"
+                    in2="noise"
+                    scale="120"
+                    xChannelSelector="R"
+                    yChannelSelector="G"
+                  />
+                </filter>
+                <mask id="circleMask7">
+                  <circle
+                    cx="50%"
+                    cy="50%"
+                    r="0"
+                    data-value-final="770"
+                    fill="white"
+                    className="mask"
+                    style={{ filter: "url(#displacementFilter7)" }}
+                  />
+                </mask>
+              </defs>
+              <image
+                xlinkHref="/assets/img/7.jpg"
+                width="1400"
+                height="560"
+                mask="url(#circleMask7)"
+              />
+            </svg>
+            <Link className="home-cta" to={"/vans"}>
+              Find Ride
+            </Link>
+
+            <p className="content__text">
+              Make each voyage unforgettable with 360-degree views and
+              photogenic backdrops.
+            </p>
+          </div>
+        </div>
+
+        <div className="content-wrap">
+          <div className="content">
+            <div className="title-wrap">
+              <span className="title title--up">Memories</span>
+              <span className="title title--down">Abound</span>
+            </div>
+          </div>
+          <div className="content content--layout content--layout-1">
+            <svg
+              className="content__img content__img--1"
+              width="896"
+              height="1344"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              viewBox="0 0 896 1344"
+            >
+              <defs>
+                <filter id="displacementFilter">
+                  <feTurbulence
+                    type="fractalNoise"
+                    baseFrequency="0.03"
+                    numOctaves="3"
+                    result="noise"
+                  />
+                  <feDisplacementMap
+                    in="SourceGraphic"
+                    in2="noise"
+                    scale="50"
+                    xChannelSelector="R"
+                    yChannelSelector="G"
+                  />
+                </filter>
+                <mask id="circleMask">
+                  <circle
+                    cx="50%"
+                    cy="50%"
+                    r="0"
+                    data-value-final="820"
+                    fill="white"
+                    className="mask"
+                    style={{ filter: "url(#displacementFilter)" }}
+                  />
+                </mask>
+              </defs>
+              <image
+                xlinkHref="/assets/img/1.jpg"
+                width="896"
+                height="1344"
+                mask="url(#circleMask)"
+              />
+            </svg>
+            <Link className="home-cta" to={"/vans"}>
+              Find Ride
+            </Link>
+
+            <p className="content__text">
+              Make each voyage unforgettable with 360-degree views and
+              photogenic backdrops.
             </p>
           </div>
         </div>
@@ -347,7 +428,7 @@ export default function Home() {
               />
             </svg>
             <Link className="home-cta" to={"/vans"}>
-              View All Vans
+              Find Ride
             </Link>
 
             <p className="content__text">
@@ -411,7 +492,7 @@ export default function Home() {
               />
             </svg>
             <Link className="home-cta" to={"/vans"}>
-              View All Vans
+              Find Ride
             </Link>
 
             <p className="content__text">
@@ -473,7 +554,7 @@ export default function Home() {
               />
             </svg>
             <Link className="home-cta" to={"/vans"}>
-              View All Vans
+              Find Ride
             </Link>
 
             <p className="content__text">
@@ -537,74 +618,12 @@ export default function Home() {
               />
             </svg>
             <Link className="home-cta" to={"/vans"}>
-              View All Vans
+              Find Ride
             </Link>
 
             <p className="content__text">
               Connect with like-minded travelers and bring people together
               through shared van adventures.
-            </p>
-          </div>
-        </div>
-        <div className="content-wrap">
-          <div className="content">
-            <div className="title-wrap">
-              <span className="title title--up">Memories </span>
-              <span className="title title--down">Abound</span>
-            </div>
-          </div>
-          <div className="content content--layout content--layout-7">
-            <svg
-              className="content__img content__img--7"
-              width="1400"
-              height="560"
-              version="1.1"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-              viewBox="0 0 1400 560"
-            >
-              <defs>
-                <filter id="displacementFilter7">
-                  <feTurbulence
-                    type="fractalNoise"
-                    baseFrequency="0.03"
-                    numOctaves="1"
-                    result="noise"
-                  />
-                  <feDisplacementMap
-                    in="SourceGraphic"
-                    in2="noise"
-                    scale="120"
-                    xChannelSelector="R"
-                    yChannelSelector="G"
-                  />
-                </filter>
-                <mask id="circleMask7">
-                  <circle
-                    cx="50%"
-                    cy="50%"
-                    r="0"
-                    data-value-final="770"
-                    fill="white"
-                    className="mask"
-                    style={{ filter: "url(#displacementFilter7)" }}
-                  />
-                </mask>
-              </defs>
-              <image
-                xlinkHref="/assets/img/7.jpg"
-                width="1400"
-                height="560"
-                mask="url(#circleMask7)"
-              />
-            </svg>
-            <Link className="home-cta" to={"/vans"}>
-              View All Vans
-            </Link>
-
-            <p className="content__text">
-              Make each voyage unforgettable with 360-degree views and
-              photogenic backdrops.
             </p>
           </div>
         </div>
