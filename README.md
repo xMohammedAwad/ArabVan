@@ -1,8 +1,8 @@
-# React Rental App
+# Arab Van App
 
-Welcome to the React Rental App – your ultimate platform for van rentals, where you can experience the world on wheels!
+Welcome to your ultimate platform for van rentals, where you can experience the world on wheels!
 
-![React Rental App Banner](https://github.com/xMohamedAwad/rentalGifs/blob/main/full.gif)
+![Arab Van App Banner](https://github.com/xMohamedAwad/rentalGifs/blob/main/full.gif)
 
 ## Table of Contents
 
@@ -24,7 +24,7 @@ Welcome to the React Rental App – your ultimate platform for van rentals, wher
 
 ## Roles
 
-The React Rental App serves two key roles:
+The Arab Van App serves two key roles:
 
 - **User**: As a user, you can explore and rent vans for your adventures.
 - **Host**: Hosts have the opportunity to list their vans for rent and manage their listings.
