@@ -10,6 +10,7 @@ import {
   addDoc,
   updateDoc,
   onSnapshot,
+  setDoc,
 } from "firebase/firestore";
 
 import { app } from "./firebase";
@@ -17,9 +18,24 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export const db = getFirestore(app);
 let authUid; // Declare authUid outside the event listener
-onAuthStateChanged(getAuth(app), (user) => {
+onAuthStateChanged(getAuth(app), async (user) => {
   if (user) {
     authUid = user.uid;
+    localStorage.setItem("authUid", authUid);
+
+    // Create a user profile document with the same ID as the auth user
+    const userProfile = {
+      displayName: "New User", // Default display name
+      photoURL: "/assets/images/about-hero.png", // Default photo URL (empty string)
+    };
+
+    const userDocRef = doc(db, "users", authUid);
+    const userDoc = await getDoc(userDocRef);
+
+    // If the document does not exist, create it.
+    if (!userDoc.exists()) {
+      await setDoc(userDocRef, userProfile);
+    }
   }
 });
 
@@ -102,7 +118,6 @@ export function getVanReviews(vanId, callback) {
   const q = query(reviewsRef, where("vanId", "==", vanId));
 
   return onSnapshot(q, (snapshot) => {
-
     const reviews = snapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
@@ -111,7 +126,7 @@ export function getVanReviews(vanId, callback) {
   });
 }
 
-export function getHostReviews( callback) {
+export function getHostReviews(callback) {
   if (authUid) {
     console.log(authUid);
     const reviewsRef = collection(db, "reviews");
@@ -179,4 +194,24 @@ export async function rentVan(vanId, hostId, startDate, endDate) {
   });
 
   console.log("Rental successful!");
+}
+
+export function getUserProfile(setUserProfile) {
+  authUid = localStorage.getItem("authUid");
+  if (authUid) {
+    const docRef = doc(db, "users", authUid);
+    // Use onSnapshot to listen for real-time updates
+    onSnapshot(docRef, (doc) => {
+      if (doc.exists()) {
+        setUserProfile(doc.data());
+      }
+    });
+  }
+}
+
+export async function updateUserProfile(userProfile) {
+  if (authUid) {
+    const docRef = doc(db, "users", authUid);
+    await updateDoc(docRef, userProfile);
+  }
 }
