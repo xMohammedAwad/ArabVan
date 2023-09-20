@@ -14,7 +14,7 @@ export default function RentVanForm() {
   const vanId = searchParams.get("vanId");
   const hostId = searchParams.get("hostId");
 
-  const [status, setStatus] = useState("idle");
+  const [Loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const [dateRange, setDateRange] = useState([new Date(), new Date()]);
@@ -34,7 +34,7 @@ export default function RentVanForm() {
 
       // If payment is successful, rent the van
       if (paymentResult) {
-        setStatus("pending");
+        setLoading(true);
         console.log(vanId, hostId, dateRange[0], dateRange[1]);
         try {
           await rentVan(vanId, hostId, dateRange[0], dateRange[1]);
@@ -45,11 +45,11 @@ export default function RentVanForm() {
             showConfirmButton: false,
             timer: 2000,
           });
-          setStatus("success");
+          setLoading(false);
         } catch (error) {
           console.error("Error renting van:", error);
           setError(error);
-          setStatus("error");
+          setLoading(false);
         }
       }
     } catch (error) {
@@ -84,11 +84,11 @@ export default function RentVanForm() {
           <input type="text" id="cardCVV" {...register("cardCVV")} />
         </div>
 
-        <button className="checkout-submit" type="submit" disabled={status === "pending"}>
+        <button className="checkout-submit" type="submit" disabled={loading}>
           Submit
         </button>
       </form>
-      {status === "pending" && <h4>Loading...</h4>}
+      {loading && <h4>Loading...</h4>}
 
       {error && <h4 className="error">Error: {error.message}</h4>}
     </div>

@@ -27,7 +27,7 @@ export function useAuth(label, email, password, from) {
       ? signInWithEmailAndPassword
       : createUserWithEmailAndPassword;
 
-  const { execute, status, error } = useAsync(
+  const { execute, loading, error } = useAsync(
     apiMethod,
     false,
     auth,
@@ -53,5 +53,5 @@ export function useAuth(label, email, password, from) {
     return () => unsubscribe();
   }, [auth, from]);
 
-  return { execute, status, error, handleSignOut };
+  return { execute, loading, error, handleSignOut };
 }

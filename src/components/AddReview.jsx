@@ -1,7 +1,6 @@
 import { addReview } from "../api";
 import { useAsync } from "../hooks/useAsync";
 import FormInput from "./FormInput";
-import Swal from "sweetalert2";
 import { useCallback, useState, useEffect } from "react";
 export default function AddVan({ vanId, hostId }) {
   const [formData, setFormData] = useState({
@@ -26,7 +25,7 @@ export default function AddVan({ vanId, hostId }) {
 
   const {
     execute: addReviewAsync,
-    status,
+    loading,
     error,
   } = useAsync(
     () => addReview(vanId, hostId, formData),
@@ -42,6 +41,10 @@ export default function AddVan({ vanId, hostId }) {
     });
     e.preventDefault();
     addReviewAsync();
+  }
+
+  if (loading) {
+    return <p>Loading...</p>;
   }
 
   return (
@@ -69,11 +72,9 @@ export default function AddVan({ vanId, hostId }) {
         value={formData.review}
         onChange={handleChange}
       ></textarea>
-      <button type="submit" disabled={status === "pending"}>
+      <button type="submit" disabled={loading}>
         Add Van
       </button>
-      {status === "pending" && <h4>Loading...</h4>}
-
       {error && <h4 className="error">Error: {error.message}</h4>}
     </form>
   );

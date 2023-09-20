@@ -47,7 +47,7 @@ export default function AddVan() {
 
   const {
     execute: addVanAsync,
-    status,
+    loading,
     error,
   } = useAsync(
     () => addVan(formData),
@@ -58,6 +58,9 @@ export default function AddVan() {
     e.preventDefault();
     addVanAsync();
     console.log(formData.hostId);
+  }
+  if (loading) {
+    return <h1>Loading...</h1>;
   }
 
   return (
@@ -74,11 +77,9 @@ export default function AddVan() {
           />
         </div>
       ))}
-      <button type="submit" disabled={status === "pending"}>
+      <button type="submit" disabled={loading}>
         Add Van
       </button>
-      {status === "pending" && <h4>Loading...</h4>}
-
       {error && <h4 className="error">Error: {error.message}</h4>}
     </form>
   );

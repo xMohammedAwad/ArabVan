@@ -8,7 +8,7 @@ export function useLoginForm(label, initialFormData) {
   let from = location.state?.from || "/host";
 
   const { formData, handleChange } = useForm(initialFormData);
-  const { execute, status, error } = useAuth(
+  const { execute, loading, error } = useAuth(
     label,
     formData.email,
     formData.password,
@@ -34,7 +34,7 @@ export function useLoginForm(label, initialFormData) {
 
   return {
     formData,
-    status,
+    loading,
     error,
     handleSubmit,
     handleChange,
