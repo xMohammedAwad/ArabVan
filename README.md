@@ -5,7 +5,7 @@ where you can experience the world on wheels!
 
 [Live Url](https://vanlife-6e5e4.web.app/)
 
-![Arab Van App Banner](https://github.com/xMohamedAwad/rentalGifs/blob/main/full.gif)
+![Arab Van App Banner](./full.gif)
 
 ## Table of Contents
 
@@ -100,7 +100,7 @@ App Structure:
 
 ### Homepage (Home)
 
-![Home Page](https://github.com/xMohamedAwad/rentalGifs/blob/main/Home.gif)
+![Home Page](./Home.gif)
 
 Immersive landing page with GSAP-powered animations, high-quality images, and smooth scrolling for an engaging user experience.
 
@@ -110,13 +110,13 @@ Immersive landing page with GSAP-powered animations, high-quality images, and sm
 
 ### Van Listings (Vans)
 
-![Van Listings Page](https://github.com/xMohamedAwad/rentalGifs/blob/main/Vanlist.gif)
+![Van Listings Page](./Vanlist.gif)
 
 Browse a comprehensive list of vans available for rent, complete with enticing images and detailed descriptions.
 
 ### Van Detail Page (VanDetail)
 
-![Van Detail Page](https://github.com/xMohamedAwad/rentalGifs/blob/main/VanItem.gif)
+![Van Detail Page](./VanItem.gif)
 
 Get up close and personal with a specific van. Explore high-resolution images, read user reviews, and even rent the van directly.
 
@@ -134,7 +134,7 @@ Read what others have to say about their rental experiences with this van.
 
 ### User Profile (Profile)
 
-![User Profile Page](https://github.com/xMohamedAwad/rentalGifs/blob/main/Host.gif)
+![User Profile Page](./Host.gif)
 
 View and edit your user profile, including your display name and profile picture.
 
