@@ -1,6 +1,8 @@
 # Arab Van App
 
-Welcome to your ultimate platform for van rentals, where you can experience the world on wheels!
+Welcome to your ultimate platform for van rentals,<br/>
+where you can experience the world on wheels!
+
 [Live Url](https://vanlife-6e5e4.web.app/)
 
 ![Arab Van App Banner](https://github.com/xMohamedAwad/rentalGifs/blob/main/full.gif)
