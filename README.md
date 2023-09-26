@@ -5,7 +5,14 @@ where you can experience the world on wheels!
 
 [Live Url](https://vanlife-6e5e4.web.app/)
 
+---
+
+### If you like presentation instead of boring text here it's
+- [Arab Van presentation](https://docs.google.com/presentation/d/173ZgWNLlSSvTCikXUfL91lQTdlIjkhwCoNBmUvNLwvs/edit?usp=sharing)
+---
+
 ![Arab Van App Banner](./full.gif)
+
 
 ## Table of Contents
 
