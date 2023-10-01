@@ -4,7 +4,7 @@ import FormInput from "./FormInput";
 
 function SignupForm() {
   const { formData, loading, error, handleSubmit, handleChange, location } =
-    useLoginForm("Signup", { email: "", password: "" });
+    useLoginForm("Signup", { email: "user@ArabVan.com", password: "mohmed2000" });
 
   return (
     <form onSubmit={handleSubmit} className="login-form">

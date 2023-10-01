@@ -19,7 +19,7 @@ export function useLoginForm(label, initialFormData) {
 
   const handleSubmit = useCallback(
     (e) => {
-      if (formData.email == "muhmmad.awd@gmail.com") {
+      if (formData.email == "Admin@ArabVan.com") {
         localStorage.setItem("role", "host");
       } else {
         localStorage.setItem("role", "user");
